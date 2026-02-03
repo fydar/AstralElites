@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 2173903893572150653}
   outline: {fileID: 2173903892954539472}
-  collider: {fileID: 2173903892801576756}
+  outlineCollider: {fileID: 2173903892801576756}
   Width: 0.04
 --- !u!50 &2173903892801576757
 Rigidbody2D:

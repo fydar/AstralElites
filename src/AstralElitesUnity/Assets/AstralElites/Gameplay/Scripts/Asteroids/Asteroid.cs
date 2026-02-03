@@ -9,7 +9,7 @@ public class Asteroid : MonoBehaviour
     [Header("Setup")]
     public MeshFilter body;
     public MeshFilter outline;
-    public new PolygonCollider2D collider;
+    public PolygonCollider2D outlineCollider;
 
     [Header("Style")]
     public float Width;
@@ -42,11 +42,11 @@ public class Asteroid : MonoBehaviour
         var outsidePolygon = Polygon.Random(segments, this.template.Variation, scale);
         var insidePolygon = outsidePolygon.Inset(Width);
 
-        collider.points = insidePolygon.Points;
-        body.mesh = collider.CreateMesh(false, false);
+        outlineCollider.points = insidePolygon.Points;
+        body.mesh = outlineCollider.CreateMesh(false, false);
 
-        collider.points = outsidePolygon.Points;
-        outline.mesh = collider.CreateMesh(false, false);
+        outlineCollider.points = outsidePolygon.Points;
+        outline.mesh = outlineCollider.CreateMesh(false, false);
 
         for (int i = 0; i < 10; i++)
         {
