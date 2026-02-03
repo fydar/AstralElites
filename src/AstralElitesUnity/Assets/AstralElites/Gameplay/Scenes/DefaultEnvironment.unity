@@ -148,8 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c045d0d53720b47b548160870947f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 551806850}
-  ScaleToScene:
+  defaultSize: 5
+  environmentCamera: {fileID: 551806850}
+  scaleToScene:
   - {fileID: 1475167978}
 --- !u!4 &172857839
 Transform:
@@ -180,7 +181,6 @@ GameObject:
   - component: {fileID: 551806851}
   - component: {fileID: 551806853}
   - component: {fileID: 551806855}
-  - component: {fileID: 551806856}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -223,7 +223,7 @@ Camera:
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.084048
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -345,19 +345,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &551806856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551806849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ea7b8cd5848b149a24856c1c73f8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultSize: 5
 --- !u!1 &1015935907
 GameObject:
   m_ObjectHideFlags: 0
