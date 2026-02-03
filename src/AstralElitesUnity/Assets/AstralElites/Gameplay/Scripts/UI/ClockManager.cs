@@ -1,20 +1,30 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClockManager : MonoBehaviour
 {
-    [SerializeField] private Text TimeText;
+    [Header("UI References")]
+    [SerializeField] private Text timeText;
 
-    [Space]
-    [SerializeField] private RectTransform HourHand;
-    [SerializeField] private RectTransform MinuteHand;
+    [Header("Clock Hands")]
+    [SerializeField] private RectTransform hourHand;
+    [SerializeField] private RectTransform minuteHand;
 
-    private void Update()
+    private void Start()
     {
-        if (Time.renderedFrameCount % 60 == 0)
+        StartCoroutine(UpdateClockRoutine());
+    }
+
+    private IEnumerator UpdateClockRoutine()
+    {
+        while (true)
         {
             UpdateClock();
+
+            float secondsUntilNextUpdate = 60 - DateTime.Now.Second;
+            yield return new WaitForSeconds(Mathf.Max(1.0f, secondsUntilNextUpdate));
         }
     }
 
@@ -22,21 +32,23 @@ public class ClockManager : MonoBehaviour
     {
         var now = DateTime.Now;
 
-        if (TimeText != null)
+        if (timeText != null)
         {
-            int hours = now.Hour;
-            int minutes = now.Minute;
-            TimeText.text = $"{hours:00}:{minutes:00}";
+            timeText.text = now.ToString("HH:mm");
         }
 
-        if (HourHand != null)
+        var timeOfDay = now.TimeOfDay;
+
+        if (hourHand != null)
         {
-            HourHand.eulerAngles = new Vector3(0, 0, (float)(now.TimeOfDay.TotalHours % 12.0) * -360.0f);
+            float hourTurns = (float)(timeOfDay.TotalHours % 12.0) / 12.0f;
+            hourHand.localRotation = Quaternion.Euler(0, 0, hourTurns * -360.0f);
         }
 
-        if (MinuteHand != null)
+        if (minuteHand != null)
         {
-            MinuteHand.eulerAngles = new Vector3(0, 0, (float)(now.TimeOfDay.Minutes / 60.0) * -360.0f);
+            float minuteTurns = timeOfDay.Minutes / 60f;
+            minuteHand.localRotation = Quaternion.Euler(0, 0, minuteTurns * -360.0f);
         }
     }
 }

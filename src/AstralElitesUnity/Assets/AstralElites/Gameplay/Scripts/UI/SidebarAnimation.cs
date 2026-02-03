@@ -14,8 +14,8 @@ public class SidebarAnimation : MonoBehaviour
     public RectTransform LittleShip;
     public RectTransform TrailRect;
 
-    private IInterpolator Interpolator;
-    private IInterpolator FaderInterpolator;
+    private CurveInterpolator Interpolator;
+    private DampenInterpolator FaderInterpolator;
 
     private void Start()
     {

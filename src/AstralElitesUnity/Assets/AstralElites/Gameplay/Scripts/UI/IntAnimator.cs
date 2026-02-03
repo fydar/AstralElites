@@ -4,41 +4,46 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class IntAnimator : MonoBehaviour
 {
-    public GlobalInt Value;
-    public float InterpolationSpeed = 10;
+    [Header("Settings")]
+    public GlobalInt valueSource;
+    public float interpolationSpeed = 10f;
 
-    private float currentValue = 0.0f;
-    private int lastRenderedValue;
-    private Text text = null;
+    private Text textComponent;
+    private float currentFloatValue;
+    private int lastDisplayedValue;
 
     private void Awake()
     {
-        text = GetComponent<Text>();
+        textComponent = GetComponent<Text>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        currentValue = Value.Value;
-        text.text = Mathf.RoundToInt(currentValue).ToString();
+        currentFloatValue = valueSource.Value;
+        lastDisplayedValue = Mathf.RoundToInt(currentFloatValue);
+        textComponent.text = lastDisplayedValue.ToString();
     }
 
     private void Update()
     {
-        if (currentValue > Value.Value)
+        if (Mathf.Abs(currentFloatValue - valueSource.Value) > 0.01f)
         {
-            currentValue = Value.Value;
-        }
+            currentFloatValue = Mathf.Lerp(
+                currentFloatValue,
+                valueSource.Value,
+                Time.deltaTime * interpolationSpeed
+            );
 
-        if (currentValue != Value.Value)
-        {
-            currentValue = Mathf.Lerp(currentValue, Value.Value, Time.deltaTime * InterpolationSpeed);
+            int roundedValue = Mathf.RoundToInt(currentFloatValue);
+            if (roundedValue != lastDisplayedValue)
+            {
+                textComponent.text = roundedValue.ToString();
+                lastDisplayedValue = roundedValue;
+            }
         }
-
-        int renderedValue = Mathf.RoundToInt(currentValue);
-        if (lastRenderedValue != renderedValue)
+        else
         {
-            text.text = renderedValue.ToString();
-            lastRenderedValue = renderedValue;
+            currentFloatValue = valueSource.Value;
         }
     }
 }

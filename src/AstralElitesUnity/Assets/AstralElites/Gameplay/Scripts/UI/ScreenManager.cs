@@ -2,6 +2,9 @@
 
 public class ScreenManager : MonoBehaviour
 {
+    [SerializeField]
+    private float defaultSize = 5.0f;
+
     public static Vector3 MinPosition;
     public static Vector3 MaxPosition;
     public static Vector2 Scale;
@@ -25,6 +28,7 @@ public class ScreenManager : MonoBehaviour
 
     private void Update()
     {
+        cam.orthographicSize = Mathf.Max(5.0f, defaultSize / ((float)Screen.width / Screen.height));
         var resolution = new Vector2(Screen.height, Screen.width);
 
         if (lastResolution != resolution)
