@@ -26,6 +26,11 @@ public class IntAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (valueSource.Value < currentFloatValue)
+        {
+            currentFloatValue = valueSource.Value;
+        }
+
         if (Mathf.Abs(currentFloatValue - valueSource.Value) > 0.01f)
         {
             currentFloatValue = Mathf.Lerp(
@@ -33,17 +38,17 @@ public class IntAnimator : MonoBehaviour
                 valueSource.Value,
                 Time.deltaTime * interpolationSpeed
             );
-
-            int roundedValue = Mathf.RoundToInt(currentFloatValue);
-            if (roundedValue != lastDisplayedValue)
-            {
-                textComponent.text = roundedValue.ToString();
-                lastDisplayedValue = roundedValue;
-            }
         }
         else
         {
             currentFloatValue = valueSource.Value;
+        }
+
+        int roundedValue = Mathf.RoundToInt(currentFloatValue);
+        if (roundedValue != lastDisplayedValue)
+        {
+            textComponent.text = roundedValue.ToString();
+            lastDisplayedValue = roundedValue;
         }
     }
 }
