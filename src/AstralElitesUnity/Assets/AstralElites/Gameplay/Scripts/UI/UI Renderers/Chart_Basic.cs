@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Chart_Basic : Graphic
+public abstract class Chart_Basic : MaskableGraphic
 {
     public float MinYMax = 1.0f;
     public Chart_Point[] Points;
