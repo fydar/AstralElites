@@ -67,22 +67,14 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.project-auditor": {
       "version": "https://github.com/Unity-Technologies/ProjectAuditor.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.unity.nuget.mono-cecil": "1.11.4",
-        "com.unity.nuget.newtonsoft-json": "3.2.1"
+        "com.unity.nuget.mono-cecil": "1.10.2"
       },
-      "hash": "d9a78910157f9dffc0a76c70c47fe1149fa5e673"
+      "hash": "eece772608537eb48e8b653376c7e344ebce054a"
     },
     "com.unity.render-pipelines.core": {
       "version": "17.3.0",
