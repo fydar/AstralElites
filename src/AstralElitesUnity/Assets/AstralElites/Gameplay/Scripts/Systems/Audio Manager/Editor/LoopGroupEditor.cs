@@ -10,9 +10,9 @@ public class LoopGroupEditor : Editor
     public string lastPlayed = "";
 
     [OnOpenAsset]
-    public static bool OpenAsset(int instanceID, int line)
+    public static bool OpenAsset(int entityId, int line)
     {
-        var asset = EditorUtility.InstanceIDToObject(instanceID);
+        var asset = EditorUtility.EntityIdToObject(entityId);
 
         if (typeof(LoopGroup).IsAssignableFrom(asset.GetType()))
         {
