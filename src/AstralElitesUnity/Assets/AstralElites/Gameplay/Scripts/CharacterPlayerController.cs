@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Character))]
 public class CharacterPlayerController : MonoBehaviour
 {
+    [SerializeField] private InputActionReference analogMovementInput;
+
     private Character character;
     private Camera mainCamera;
 
@@ -27,7 +30,7 @@ public class CharacterPlayerController : MonoBehaviour
             }
             if (character.RocketCooldownCurrent < 0.0f)
             {
-                if (Input.GetMouseButton(1))
+                if (Mouse.current?.rightButton.isPressed ?? false)
                 {
                     AudioManager.Play(character.RocketSound);
 
@@ -41,24 +44,32 @@ public class CharacterPlayerController : MonoBehaviour
             }
         }
 
-        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-        var scenePoint = ray.origin + (ray.direction * 10);
-
-        float angleRadians = Mathf.Atan2(scenePoint.y - transform.position.y,
-            scenePoint.x - transform.position.x);
-
-        float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-        character.inputRotation = angleDegrees;
-
-        if (Input.GetMouseButton(0))
+        bool isUsingMouse = false;
+        if (Mouse.current != null)
         {
-            character.inputThrust = transform.right;
+            var ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            var scenePoint = ray.origin + (ray.direction * 10);
+
+            float angleRadians = Mathf.Atan2(scenePoint.y - transform.position.y,
+                scenePoint.x - transform.position.x);
+
+            float angleDegrees = angleRadians * Mathf.Rad2Deg;
+
+            character.inputRotation = angleDegrees;
+
+            if (Mouse.current?.leftButton.isPressed ?? false)
+            {
+                character.inputThrust = transform.right;
+                isUsingMouse = true;
+            }
         }
-        else
+
+        if (!isUsingMouse)
         {
-            character.inputThrust = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+            var input = analogMovementInput.action.ReadValue<Vector2>();
+            Debug.Log(input);
+            character.inputThrust = input;
         }
     }
 }

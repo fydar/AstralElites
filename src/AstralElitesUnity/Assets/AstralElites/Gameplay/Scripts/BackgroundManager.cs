@@ -55,7 +55,7 @@ public class BackgroundManager : MonoBehaviour
             }
         };
 
-        player.gameObject.AddComponent<CharacterAIController>();
+        player.GetComponent<CharacterAIController>().enabled = true;
     }
 
     private IEnumerator GameOverRoutine()

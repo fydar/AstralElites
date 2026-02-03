@@ -42,27 +42,5 @@ public class CharacterAIController : MonoBehaviour
 
         character.inputRotation = angleDegrees + (Mathf.Sin(Time.time * 3) * 60);
         character.inputThrust = transform.right;
-
-        if (character.RocketProjectile.Template != null)
-        {
-            if (character.RocketCooldownCurrent >= 0.0f)
-            {
-                character.RocketCooldownCurrent -= Time.deltaTime;
-            }
-            if (character.RocketCooldownCurrent < 0.0f)
-            {
-                if (Input.GetMouseButton(1))
-                {
-                    AudioManager.Play(character.RocketSound);
-
-                    var clone = character.RocketProjectile.Grab();
-                    clone.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                    clone.LifetimeRemaining = clone.Lifetime;
-                    clone.Owner = gameObject;
-
-                    character.RocketCooldownCurrent = character.RocketCooldown;
-                }
-            }
-        }
     }
 }

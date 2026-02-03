@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public class Spring
@@ -34,7 +35,7 @@ public class SpringBetween : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Keyboard.current.xKey.wasPressedThisFrame)
         {
             spring.Velocity += bounceForce;
         }

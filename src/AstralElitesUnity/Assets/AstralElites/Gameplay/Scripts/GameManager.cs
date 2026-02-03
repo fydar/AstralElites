@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     }
 
     public static GameManager instance;
+
+    [SerializeField] private InputActionReference menuInput;
+
 
     public bool paused = false;
     public PlayState playState;
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.PlayMusic("Main");
 
-        player.gameObject.AddComponent<CharacterPlayerController>();
+        player.GetComponent<CharacterPlayerController>().enabled = true;
 
         StartGame();
 
@@ -112,7 +116,7 @@ public class GameManager : MonoBehaviour
     {
         if (playState == PlayState.Playing)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Menu) || Input.GetKeyDown(KeyCode.Tab))
+            if (menuInput.action.WasPressedThisFrame())
             {
                 UI_TogglePause();
             }

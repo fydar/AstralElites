@@ -58,3 +58,4 @@ Project/Library/EditorInstance.json
 *.stamp
 src/AstralElitesUnity/Logs
 src/AstralElitesUnity/*.slnx
+src/AstralElitesUnity/.vsconfig
