@@ -13,6 +13,8 @@ public class CharacterPlayerController : MonoBehaviour
     {
         character = GetComponent<Character>();
         mainCamera = Camera.main;
+
+        analogMovementInput.asset.Enable();
     }
 
     private void Update()
@@ -68,7 +70,6 @@ public class CharacterPlayerController : MonoBehaviour
         if (!isUsingMouse)
         {
             var input = analogMovementInput.action.ReadValue<Vector2>();
-            Debug.Log(input);
             character.inputThrust = input;
         }
     }
