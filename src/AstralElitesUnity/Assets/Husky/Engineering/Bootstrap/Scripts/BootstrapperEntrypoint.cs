@@ -81,6 +81,7 @@ namespace HuskyUnity.Engineering.Bootstrap
             CurrentHost = hostBuilder.Build();
             CurrentHost.StartHost();
 
+            Application.quitting -= ApplicationQuitting;
             Application.quitting += ApplicationQuitting;
         }
 

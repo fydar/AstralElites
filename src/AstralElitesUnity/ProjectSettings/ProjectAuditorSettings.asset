@@ -16,14 +16,12 @@ MonoBehaviour:
     m_Rules: []
   DiagnosticParams:
     m_ParamsStack:
-    - Platform: -2
+    - PlatformGroup: 0
       m_SerializedParams:
       - Key: SpriteAtlasEmptySpaceLimit
         Value: 50
       - Key: TextureStreamingMipmapsSizeLimit
         Value: 4000
-      - Key: TextureEmptySpaceLimit
-        Value: 50
       - Key: StreamingClipThresholdBytes
         Value: 218294
       - Key: LongDecompressedClipThresholdBytes
