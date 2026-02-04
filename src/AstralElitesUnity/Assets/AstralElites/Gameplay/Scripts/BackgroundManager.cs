@@ -26,7 +26,7 @@ public class BackgroundManager : MonoBehaviour
             {
                 if (player.isAlive)
                 {
-                    ScreenEffect.instance.Pulse(1.0f);
+                    ScreenEffect.Instance.Pulse(1.0f);
                     Camera.main.GetComponent<PerlinShake>().PlayShake(1.0f);
 
                     AudioManager.Play(player.HitSound);
@@ -50,7 +50,7 @@ public class BackgroundManager : MonoBehaviour
 
                 if (delta > 0)
                 {
-                    ScreenEffect.instance.Pulse(delta / 60.0f);
+                    ScreenEffect.Instance.Pulse(delta / 60.0f);
                 }
             }
         };

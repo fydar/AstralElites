@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
                     player.Kill();
                     AudioManager.Play(player.HitSound);
                     AudioManager.Play(player.DestroySound);
-                    ScreenEffect.instance.Pulse(1.0f);
+                    ScreenEffect.Instance.Pulse(1.0f);
                     Camera.main.GetComponent<PerlinShake>().PlayShake(1.0f);
                     EndGame();
                 }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
                 if (delta > 0)
                 {
-                    ScreenEffect.instance.Pulse(delta / 60.0f);
+                    ScreenEffect.Instance.Pulse(delta / 60.0f);
                 }
             }
         };
