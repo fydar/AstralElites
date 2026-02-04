@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Asteroid : MonoBehaviour
@@ -42,11 +43,15 @@ public class Asteroid : MonoBehaviour
         var outsidePolygon = Polygon.Random(segments, this.template.Variation, scale);
         var insidePolygon = outsidePolygon.Inset(Width);
 
-        outlineCollider.points = insidePolygon.Points;
-        body.mesh = outlineCollider.CreateMesh(false, false);
-
+        body.mesh = Trianglulate(insidePolygon.Points);
+        outline.mesh = Trianglulate(outsidePolygon.Points);
         outlineCollider.points = outsidePolygon.Points;
-        outline.mesh = outlineCollider.CreateMesh(false, false);
+
+        // outlineCollider.points = insidePolygon.Points;
+        // body.mesh = OptimizeColliderMesh(outlineCollider.CreateMesh(false, false));
+        // 
+        // outlineCollider.points = outsidePolygon.Points;
+        // outline.mesh = OptimizeColliderMesh(outlineCollider.CreateMesh(false, false));
 
         for (int i = 0; i < 10; i++)
         {
@@ -112,39 +117,67 @@ public class Asteroid : MonoBehaviour
         rb.AddForce(direction * velocity, ForceMode2D.Impulse);
     }
 
+    private Mesh OptimizeColliderMesh(Mesh sourceMesh)
+    {
+        if (sourceMesh.indexFormat == IndexFormat.UInt16)
+        {
+            sourceMesh.UploadMeshData(true);
+            return sourceMesh;
+        }
+
+        sourceMesh.indexFormat = IndexFormat.UInt16;
+
+        int[] triangles = sourceMesh.triangles;
+        ushort[] tris16 = new ushort[triangles.Length];
+
+        for (int i = 0; i < triangles.Length; i++)
+        {
+            tris16[i] = (ushort)triangles[i];
+        }
+
+        sourceMesh.SetIndices(tris16, MeshTopology.Triangles, 0);
+        sourceMesh.UploadMeshData(true);
+        return sourceMesh;
+    }
+
     public static Mesh Trianglulate(Vector2[] points)
     {
-        var verts = new Vector3[points.Length + 1];
-        var normals = new Vector3[verts.Length];
+        int vertexCount = points.Length + 1;
+
+        var verts = new Vector3[vertexCount];
+        var normals = new Vector3[vertexCount];
+
         verts[0] = Vector3.zero;
-        normals[0] = Vector3.up;
+        normals[0] = Vector3.back;
 
         for (int i = 0; i < points.Length; i++)
         {
             verts[i + 1] = points[i];
-            normals[i + 1] = Vector3.up;
+            normals[i + 1] = Vector3.back;
         }
 
-        var mesh = new Mesh();
-        int[] tris = new int[verts.Length * 3];
-
-        int currentIndex = 0;
-        for (int i = 1; i < verts.Length; i++)
+        var mesh = new Mesh
         {
-            tris[currentIndex] = 0;
-            tris[currentIndex + 1] = i - 1;
-            tris[currentIndex + 2] = i;
+            indexFormat = IndexFormat.UInt16
+        };
 
-            currentIndex += 3;
+        int triangleIndexCount = points.Length * 3;
+        ushort[] tris = new ushort[triangleIndexCount];
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            int offset = i * 3;
+            tris[offset] = 0;
+            tris[offset + 1] = (ushort)(i + 1);
+            tris[offset + 2] = (ushort)((i + 1 == points.Length) ? 1 : i + 2);
         }
-
-        tris[currentIndex] = 0;
-        tris[currentIndex + 1] = verts.Length - 1;
-        tris[currentIndex + 2] = 1;
 
         mesh.vertices = verts;
-        mesh.triangles = tris;
         mesh.normals = normals;
+        mesh.SetIndices(tris, MeshTopology.Triangles, 0);
+
+        mesh.RecalculateBounds();
+        mesh.UploadMeshData(false);
 
         return mesh;
     }
