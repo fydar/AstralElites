@@ -17,7 +17,7 @@ public class IntBar : MonoBehaviour
 
     [SerializeField]
     private float secondaryBarDelay = 1.0f;
-    private float lastValue = 0.0f;
+    private float targetFill = 0.0f;
 
     private void Start()
     {
@@ -30,13 +30,13 @@ public class IntBar : MonoBehaviour
     {
         if (secondaryBar != null)
         {
-            if (secondaryBar.fillAmount > primaryBar.fillAmount)
+            if (secondaryBar.fillAmount > targetFill)
             {
-                SetImageFill(secondaryBar, Mathf.Lerp(GetFillAmount(secondaryBar), primaryBar.fillAmount, Time.deltaTime * secondaryBarDelay));
+                SetImageFill(secondaryBar, Mathf.Lerp(GetFillAmount(secondaryBar), targetFill, Time.deltaTime * secondaryBarDelay));
             }
             else
             {
-                SetImageFill(secondaryBar, primaryBar.fillAmount);
+                SetImageFill(secondaryBar, targetFill);
             }
         }
     }
@@ -45,10 +45,9 @@ public class IntBar : MonoBehaviour
     {
         float value = Target.Health.Value;
         float max = 100.0f;
+        targetFill = value / max;
 
-        SetImageFill(primaryBar, value / max);
-
-        lastValue = value;
+        SetImageFill(primaryBar, targetFill);
     }
 
     private void SetImageFill(Image image, float fill)
