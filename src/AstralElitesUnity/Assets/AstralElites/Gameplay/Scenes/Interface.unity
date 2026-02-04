@@ -2875,10 +2875,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353230773}
-  - component: {fileID: 353230778}
-  - component: {fileID: 353230777}
   - component: {fileID: 353230776}
   - component: {fileID: 353230775}
+  - component: {fileID: 353230778}
+  - component: {fileID: 353230777}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -7457,7 +7457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108, y: 0}
+  m_AnchoredPosition: {x: 116, y: 0}
   m_SizeDelta: {x: 128, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!223 &1033443239
@@ -10951,7 +10951,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 32, y: -96}
-  m_SizeDelta: {x: 320, y: 64}
+  m_SizeDelta: {x: 330, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1649827273
 GameObject:
@@ -11295,7 +11295,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 32, y: -32}
-  m_SizeDelta: {x: 236, y: 64}
+  m_SizeDelta: {x: 244, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1680601699
 GameObject:
@@ -13709,10 +13709,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1638666232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 190, y: 0}
-  m_SizeDelta: {x: -190, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: 0}
+  m_SizeDelta: {x: 130, y: 64}
   m_Pivot: {x: 0, y: 1}
 --- !u!223 &2095079629
 Canvas:
