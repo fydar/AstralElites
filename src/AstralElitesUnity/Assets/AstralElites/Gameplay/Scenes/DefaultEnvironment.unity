@@ -25414,6 +25414,7 @@ MonoBehaviour:
     Value: 0
     Velocity: 0
   PulseVelocity: 8
+  SleepThreshold: 0.001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
