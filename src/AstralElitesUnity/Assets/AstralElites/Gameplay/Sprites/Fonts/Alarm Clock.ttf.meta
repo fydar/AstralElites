@@ -3,15 +3,15 @@ guid: c7818ee261033ac4a977159434b07317
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 42
+  forceTextureCase: 3
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - alarm clock
   fallbackFontReferences: []
-  customCharacters: 
+  customCharacters: 'HIGSCORE:0123456789 '
   fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
