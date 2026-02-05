@@ -22,6 +22,11 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
 
     private void ProcessData()
     {
+        if (UniversalRenderPipeline.asset == null)
+        {
+            return;
+        }
+
         var rendererDataList = (ScriptableRendererData[])typeof(UniversalRenderPipelineAsset).GetField("m_RendererDataList", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(UniversalRenderPipeline.asset);
 
         for (int i = 0; i < rendererDataList.Length; i++)
