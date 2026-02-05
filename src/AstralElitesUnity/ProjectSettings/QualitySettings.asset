@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 0
+  m_CurrentQuality: 1
   m_QualitySettings:
   - serializedVersion: 5
     name: Default
@@ -59,9 +59,11 @@ QualitySettings:
     terrainFadeLength: 5
     terrainMaxTrees: 50
     excludedTargetPlatforms:
-    - Standalone
+    - WebGL
+    - iPhone
+    - Android
   - serializedVersion: 5
-    name: PC Default
+    name: WebGL
     pixelLightCount: 4
     shadows: 0
     shadowResolution: 0
@@ -102,7 +104,7 @@ QualitySettings:
     asyncUploadBufferSize: 4
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: bafab1407803dfd4fb3f1c50d23cefa9, type: 2}
+    customRenderPipeline: {fileID: 0}
     terrainQualityOverrides: 0
     terrainPixelError: 1
     terrainDetailDensityScale: 1
@@ -115,7 +117,7 @@ QualitySettings:
     excludedTargetPlatforms:
     - iPhone
     - Android
-    - WebGL
+    - Standalone
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 0
