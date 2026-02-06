@@ -24,28 +24,6 @@ public class CharacterPlayerController : MonoBehaviour
             return;
         }
 
-        if (character.RocketProjectile.Template != null)
-        {
-            if (character.RocketCooldownCurrent >= 0.0f)
-            {
-                character.RocketCooldownCurrent -= Time.deltaTime;
-            }
-            if (character.RocketCooldownCurrent < 0.0f)
-            {
-                if (Mouse.current?.rightButton.isPressed ?? false)
-                {
-                    AudioManager.Play(character.RocketSound);
-
-                    var clone = character.RocketProjectile.Grab();
-                    clone.transform.SetPositionAndRotation(transform.position, transform.rotation);
-                    clone.LifetimeRemaining = clone.Lifetime;
-                    clone.Owner = gameObject;
-
-                    character.RocketCooldownCurrent = character.RocketCooldown;
-                }
-            }
-        }
-
         bool isUsingMouse = false;
         if (Mouse.current != null)
         {

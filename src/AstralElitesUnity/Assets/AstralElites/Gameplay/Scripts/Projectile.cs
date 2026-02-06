@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Projectile : MonoBehaviour
     public float LifetimeRemaining;
 
     private Transform thisTransform;
+
+    [NonSerialized] public GameObjectPool<Projectile> ownerPool;
 
     private void Awake()
     {
@@ -80,14 +83,8 @@ public class Projectile : MonoBehaviour
         {
             PulseEffect.Instances[EffectId].PlayAt(thisTransform.position, thisTransform.rotation);
         }
-        if (EffectId == "Explosion2")
-        {
-            Owner.GetComponent<Character>().RocketProjectile.Return(this);
-        }
-        else
-        {
-            Owner.GetComponent<Character>().WeaponProjectile.Return(this);
-        }
+
+        ownerPool.Return(this);
 
         if (HasAreaOfEffect)
         {

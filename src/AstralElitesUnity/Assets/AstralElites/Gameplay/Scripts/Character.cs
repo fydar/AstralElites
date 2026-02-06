@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour
 {
@@ -25,18 +24,6 @@ public class Character : MonoBehaviour
     public AnimationCurve DamageFromVelocity;
 
     public GlobalFloat DistanceTravelled;
-
-    [Header("Combat")]
-    public Transform Firepoint;
-    public float FireCooldown = 0.1f;
-    public GameObjectPool<Projectile> WeaponProjectile;
-    public SfxGroup ShootSound;
-
-    [Space]
-    public float RocketCooldown = 2.0f;
-    public float RocketCooldownCurrent = 2.0f;
-    public GameObjectPool<Projectile> RocketProjectile;
-    public SfxGroup RocketSound;
 
     [Header("Movement")]
     public float MovementSpeed = 10.0f;
@@ -65,10 +52,10 @@ public class Character : MonoBehaviour
 
     private readonly List<Asteroid> Contacting = new();
 
+    public bool IsAttemptingFire => isAlive && canFire;
+
     private void Awake()
     {
-        WeaponProjectile.Initialise(null);
-
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
 
@@ -92,8 +79,6 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(Fire), FireCooldown, FireCooldown);
-
         if (EngineSound != null)
         {
             AudioManager.Play(EngineSound, EngineFade);
@@ -193,27 +178,6 @@ public class Character : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         _ = Contacting.Remove(collision.gameObject.GetComponent<Asteroid>());
-    }
-
-    private void Fire()
-    {
-        if (!isAlive)
-        {
-            return;
-        }
-
-        if (!canFire)
-        {
-            return;
-        }
-
-        AudioManager.Play(ShootSound);
-
-        var clone = WeaponProjectile.Grab();
-        clone.transform.SetPositionAndRotation(Firepoint.position, Firepoint.rotation);
-        clone.LifetimeRemaining = clone.Lifetime;
-
-        clone.Owner = gameObject;
     }
 
     public void Kill()
