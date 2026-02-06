@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 3. Sergeant
   m_EditorClassIdentifier: 
   DisplayName: Sergeant
+  Abbreviation: SGT
   DiscordAsset: sergeant
   RequiredScore: 6250
   Render:

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 5. Lieutenant
   m_EditorClassIdentifier: 
   DisplayName: Lieutenant
+  Abbreviation: LT
   DiscordAsset: lieutenant
   RequiredScore: 15000
   Render:

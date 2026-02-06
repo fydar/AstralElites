@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1. Private
   m_EditorClassIdentifier: 
   DisplayName: Private
+  Abbreviation: PVT
   DiscordAsset: private
   RequiredScore: 1000
   Render:

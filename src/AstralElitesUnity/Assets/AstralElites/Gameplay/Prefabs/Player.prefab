@@ -441,7 +441,7 @@ MonoBehaviour:
   DestroySound: {fileID: 11400000, guid: 66b603d758db01440a27cc92bbcc7966, type: 2}
   WarpSound: {fileID: 11400000, guid: 6f6a825274248c04ea1e3391787a4409, type: 2}
   GravelHitSound: {fileID: 0}
-  EngineSound: {fileID: 11400000, guid: b982a127501898b4fa4778acbe1fad1d, type: 2}
+  EngineSound: {fileID: 0}
   AlarmSound: {fileID: 11400000, guid: 18043b90ac2ad074d932b98bfd8f8c5c, type: 2}
   ScrapingSound: {fileID: 11400000, guid: d8bea201fdf45774eb4d0667932dd5e5, type: 2}
   DamageFromVelocity:

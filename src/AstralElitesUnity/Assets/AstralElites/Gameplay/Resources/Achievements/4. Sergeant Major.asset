@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 4. Sergeant Major
   m_EditorClassIdentifier: 
   DisplayName: Sergeant Major
+  Abbreviation: SGM
   DiscordAsset: sergeant_major
   RequiredScore: 10000
   Render:

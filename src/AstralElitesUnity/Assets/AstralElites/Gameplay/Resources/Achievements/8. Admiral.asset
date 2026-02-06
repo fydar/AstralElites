@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 8. Admiral
   m_EditorClassIdentifier: 
   DisplayName: Admiral
+  Abbreviation: ADM
   DiscordAsset: admiral
   RequiredScore: 60000
   Render:

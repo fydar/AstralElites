@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rank : ScriptableObject
 {
     public string DisplayName = "Asset";
+    public string Abbreviation = "Asset";
     public string DiscordAsset = "Asset";
     public int RequiredScore = 1000;
 
@@ -14,13 +15,9 @@ public class Rank : ScriptableObject
 
     public static Rank GetRank(int score)
     {
-        if (Ranks == null)
-        {
-            var ranks = new List<Rank>(Resources.LoadAll<Rank>("Achievements"));
-            ranks.Sort(SortRanks);
+        EnsureRanksInitialized();
 
-            Ranks = ranks.ToArray();
-        }
+        if (Ranks.Length == 0) return null;
 
         var lastRank = Ranks[0];
 
@@ -35,6 +32,35 @@ public class Rank : ScriptableObject
             lastRank = currentRank;
         }
         return lastRank;
+    }
+
+    public static Rank GetNextRank(Rank previousRank)
+    {
+        EnsureRanksInitialized();
+
+        bool found = false;
+        foreach (var rank in Ranks)
+        {
+            if (rank == previousRank)
+            {
+                found = true;
+            }
+            else if (found)
+            {
+                return rank;
+            }
+        }
+
+        return null;
+    }
+
+    private static void EnsureRanksInitialized()
+    {
+        if (Ranks != null) return;
+
+        var ranksList = new List<Rank>(Resources.LoadAll<Rank>("Achievements"));
+        ranksList.Sort(SortRanks);
+        Ranks = ranksList.ToArray();
     }
 
     private static int SortRanks(Rank a, Rank b)

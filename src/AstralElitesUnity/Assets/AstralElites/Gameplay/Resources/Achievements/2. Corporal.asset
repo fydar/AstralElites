@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 2. Corporal
   m_EditorClassIdentifier: 
   DisplayName: Corporal
+  Abbreviation: CPL
   DiscordAsset: corporal
   RequiredScore: 2500
   Render:

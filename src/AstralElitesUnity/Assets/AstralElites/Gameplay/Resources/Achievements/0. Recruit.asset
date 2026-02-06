@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 0. Recruit
   m_EditorClassIdentifier: 
   DisplayName: Recruit
+  Abbreviation: 
   DiscordAsset: recruit
   RequiredScore: 0
   Render:
