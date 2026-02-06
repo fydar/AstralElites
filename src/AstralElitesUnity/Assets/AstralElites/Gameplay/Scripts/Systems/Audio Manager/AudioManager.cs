@@ -86,6 +86,7 @@ public class AudioManager : MonoBehaviour
         source.clip = group.GetClip();
         source.volume = Random.Range(group.VolumeRange.x, group.VolumeRange.y);
         source.pitch = Random.Range(group.PitchRange.x, group.PitchRange.y);
+        source.priority = group.Priority;
         source.loop = false;
 
         var animator = new AudioSourceAnimator(source, TabFade, MasterVolume, SfxVolume);
@@ -110,6 +111,7 @@ public class AudioManager : MonoBehaviour
         source.pitch = group.PitchRange.x;
         source.volume = group.VolumeRange.x;
         source.loop = true;
+        source.priority = group.Priority;
 
         var animator = new AudioSourceAnimator(source, TabFade, MasterVolume, SfxVolume);
         Animators.Add(animator);
@@ -141,7 +143,7 @@ public class AudioManager : MonoBehaviour
 
         source.clip = group.Music[0];
         source.volume = group.Volume;
-        source.priority = 1024;
+        source.priority = 0;
         source.loop = true;
 
         var animator = new AudioSourceAnimator(source, TabFade, MasterVolume, MusicVolume);

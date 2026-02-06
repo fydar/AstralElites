@@ -7,6 +7,7 @@ public class SfxGroup : AudioAsset
 
     public Vector2 VolumeRange;
     public Vector2 PitchRange;
+    public int Priority;
 
     public AudioClip GetClip()
     {

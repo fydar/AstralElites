@@ -50,6 +50,7 @@ public class SfxGroupEditor : Editor
         source.clip = clip;
         source.volume = UnityEngine.Random.Range(group.VolumeRange.x, group.VolumeRange.y);
         source.pitch = UnityEngine.Random.Range(group.PitchRange.x, group.PitchRange.y);
+        source.priority = group.Priority;
         source.Play();
     }
 }

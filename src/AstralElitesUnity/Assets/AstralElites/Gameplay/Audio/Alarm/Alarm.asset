@@ -17,3 +17,4 @@ MonoBehaviour:
   VolumeRange: {x: 0.1, y: 0.1}
   PitchRange: {x: 0.7, y: 0.7}
   PerlinSpeed: 5
+  Priority: 128

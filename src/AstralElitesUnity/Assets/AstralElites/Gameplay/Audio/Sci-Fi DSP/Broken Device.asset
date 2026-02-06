@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2f8a4087d7e8ff343bd01b08d5688c26, type: 3}
   VolumeRange: {x: 0.2, y: 0.2}
   PitchRange: {x: 0.625, y: 0.75}
+  Priority: 128

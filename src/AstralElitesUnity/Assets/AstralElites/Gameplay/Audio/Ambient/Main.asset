@@ -16,3 +16,4 @@ MonoBehaviour:
   Music:
   - {fileID: 8300000, guid: 3f5573394f1c7e34e9d96a0ee92cc557, type: 3}
   Volume: 0.3
+  Priority: 0
