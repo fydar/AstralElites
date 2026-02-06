@@ -14,92 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Web.Stripping.Editor::Unity.Web.Stripping.Editor.SubmoduleStrippingSettings
   OptimizeCodeAfterStripping: 1
   RemoveEmbeddedDebugSymbols: 1
-  MissingSubmoduleErrorHandling: 0
+  MissingSubmoduleErrorHandling: 1
   SubmodulesToStrip:
-  - 2D Rendering Common
   - 2D Rendering Sprite Tiling
   - Advanced Text Generator Support
-  - Freetype2 Base
-  - Freetype2 CFF
-  - Freetype2 OpenType Validation
-  - Freetype2 Postscript
-  - Freetype2 SFNT
-  - Freetype2 TrueType
+  - Freetype2
   - GPU Instancing
   - Mesh Blend Shapes
   - Mesh Skinning
   - Newtonsoft Json.NET
-  - ParticleSystem Events
-  - ParticleSystem Base Module
-  - ParticleSystem Sub Emitters Module
   - System.ComponentModel Extra
+  - System.Data
   - System.Security
+  - System.Xml
   - TetGen
-  - Texture Decompression
+  - Texture Decompression BC
+  - Texture Decompression DXT
+  - Texture Decompression ETC
   - Texture Decompression Crunch
-  - UI Toolkit Base Fields
-  - UI Toolkit BaseVerticalCollectionView
-  - UI Toolkit BoundsField
-  - UI Toolkit BoundsIntField
-  - UI Toolkit Box
-  - UI Toolkit Button
-  - UI Toolkit Columns
-  - UI Toolkit ContextualMenu
-  - UI Toolkit DoubleField
-  - UI Toolkit DropdownMenu
-  - UI Toolkit EnumField
-  - UI Toolkit FloatField
-  - UI Toolkit Foldout
-  - UI Toolkit GroupBox
-  - UI Toolkit Hash128Field
-  - UI Toolkit HelpBox
-  - UI Toolkit Image
-  - UI Toolkit IMGUIContainer
-  - UI Toolkit IntegerField
-  - UI Toolkit Label
-  - UI Toolkit ListView
-  - UI Toolkit LongField
-  - UI Toolkit MinMaxSlider
-  - UI Toolkit MultiColumnController
-  - UI Toolkit MultiColumnListView
-  - UI Toolkit MultiColumnTreeView
-  - UI Toolkit Painter2D
-  - UI Toolkit PopupField
-  - UI Toolkit PopupWindow
-  - UI Toolkit ProgressBar
-  - UI Toolkit RadioButton
-  - UI Toolkit RadioButtonGroup
-  - UI Toolkit RectField
-  - UI Toolkit RectIntField
-  - UI Toolkit RepeatButton
-  - UI Toolkit Scroller
-  - UI Toolkit ScrollView
-  - UI Toolkit Slider
-  - UI Toolkit SliderInt
-  - UI Toolkit Tab
-  - UI Toolkit TabView
-  - UI Toolkit TemplateContainer
-  - UI Toolkit TextElement
-  - UI Toolkit TextField
-  - UI Toolkit TextInputBaseField<T0>
-  - UI Toolkit TextValueField<T0>
-  - UI Toolkit Toggle
-  - UI Toolkit ToggleButtonGroup
-  - UI Toolkit TreeView
-  - UI Toolkit TwoPaneSplitView
-  - UI Toolkit UIDocument
-  - UI Toolkit UIRenderer
-  - UI Toolkit UnsignedIntegerField
-  - UI Toolkit UnsignedLongField
-  - UI Toolkit Vector2Field
-  - UI Toolkit Vector2IntField
-  - UI Toolkit Vector3Field
-  - UI Toolkit Vector3IntField
-  - UI Toolkit Vector4Field
-  - UI Toolkit VectorImage
-  - UI Toolkit VisualElement
-  - UI Toolkit VisualElementExtensions
-  - UI Toolkit VisualElementFocusChangeDirection
-  - UI Toolkit VisualElementFocusRing
-  - UI Toolkit VisualTreeAsset
+  - UI Toolkit Framework
+  - WebGL Support
   - Compute Shader Support
