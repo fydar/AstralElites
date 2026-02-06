@@ -11,6 +11,11 @@ public class SfxGroup : AudioAsset
 
     public AudioClip GetClip()
     {
+        if (Clips == null || Clips.Length == 0)
+        {
+            return null;
+        }
+
         return Clips[Random.Range(0, Clips.Length)];
     }
 

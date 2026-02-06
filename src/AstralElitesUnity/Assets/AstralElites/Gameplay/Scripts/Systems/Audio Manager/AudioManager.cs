@@ -81,9 +81,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        var clip = group.GetClip();
+        if (clip == null)
+        {
+            return;
+        }
+
         var source = Pool.Grab();
 
-        source.clip = group.GetClip();
+        source.clip = clip;
         source.volume = Random.Range(group.VolumeRange.x, group.VolumeRange.y);
         source.pitch = Random.Range(group.PitchRange.x, group.PitchRange.y);
         source.priority = group.Priority;
@@ -101,6 +107,11 @@ public class AudioManager : MonoBehaviour
         EffectFader fader)
     {
         if (DisableAudio)
+        {
+            return;
+        }
+
+        if (group.LoopedAudio == null)
         {
             return;
         }

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
-[CustomEditor(typeof(SfxGroup))]
+[CustomEditor(typeof(SfxGroup)), CanEditMultipleObjects]
 public class SfxGroupEditor : Editor
 {
     public string lastPlayed = "";
@@ -13,9 +13,8 @@ public class SfxGroupEditor : Editor
     {
         var asset = EditorUtility.EntityIdToObject(entityId);
 
-        if (typeof(SfxGroup).IsAssignableFrom(asset.GetType()))
+        if (asset is SfxGroup group)
         {
-            var group = (SfxGroup)asset;
             PreviewGroup(group);
             return true;
         }
@@ -24,21 +23,38 @@ public class SfxGroupEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        var group = (SfxGroup)target;
-
         DrawDefaultInspector();
+
+        EditorGUILayout.Space();
 
         if (GUILayout.Button("Play Clips"))
         {
-            lastPlayed = PreviewGroup(group).name;
+            foreach (var t in targets)
+            {
+                if (t is SfxGroup group)
+                {
+                    lastPlayed = PreviewGroup(group).name;
+                }
+            }
         }
-        EditorGUILayout.LabelField(lastPlayed);
+
+        if (targets.Length > 1)
+        {
+            EditorGUILayout.LabelField("Playing multiple clips...");
+        }
+        else
+        {
+            EditorGUILayout.LabelField("Last Played:", lastPlayed);
+        }
     }
 
     public static AudioClip PreviewGroup(SfxGroup group)
     {
         var clip = group.GetClip();
-        PlayClip(clip, group);
+        if (clip != null)
+        {
+            PlayClip(clip, group);
+        }
         return clip;
     }
 
