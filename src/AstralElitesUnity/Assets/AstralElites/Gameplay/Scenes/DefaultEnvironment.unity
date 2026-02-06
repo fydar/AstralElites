@@ -10448,7 +10448,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -15133,7 +15133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: {x: 0, y: 0, z: 5}
-  emissionCount: 30
+  emissionCount: 45
 --- !u!1 &1475167977
 GameObject:
   m_ObjectHideFlags: 0
