@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: AstralElites.Gameplay::CharacterPlayerController
   analogMovementInput: {fileID: -1680190386980627800, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
+  analogLookInput: {fileID: -5630151704836100654, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
 --- !u!114 &7346611509180695982
 MonoBehaviour:
   m_ObjectHideFlags: 0
