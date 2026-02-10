@@ -12,28 +12,38 @@ public readonly struct Polygon
 
     public Polygon Inset(float amount)
     {
-        var newPoints = new Vector2[Points.Length];
+        int count = Points.Length;
+        var newPoints = new Vector2[count];
 
-        var a = Points[newPoints.Length - 2];
-        var b = Points[newPoints.Length - 1];
-
-        for (int i = 0; i < Points.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            var c = Points[i];
+            var pPrev = Points[(i + count - 1) % count];
+            var pCurr = Points[i];
+            var pNext = Points[(i + 1) % count];
 
-            var insetABDirection = Vector2.Perpendicular(b - a).normalized;
-            var insetBCDirection = Vector2.Perpendicular(c - b).normalized;
+            var dirLeft = (pCurr - pPrev).normalized;
+            var dirRight = (pNext - pCurr).normalized;
 
-            var insetA = a - (insetABDirection * amount);
-            var insetB = b - (insetABDirection * amount);
+            var nLeft = new Vector2(-dirLeft.y, dirLeft.x);
+            var nRight = new Vector2(-dirRight.y, dirRight.x);
 
-            var insetC = b - (insetBCDirection * amount);
-            var insetD = c - (insetBCDirection * amount);
+            var miter = (nLeft + nRight).normalized;
 
-            newPoints[i] = FindIntersection(insetA, insetB, insetC, insetD);
+            float dot = Vector2.Dot(miter, nLeft);
 
-            a = b;
-            b = c;
+            if (Math.Abs(dot) < 0.001f)
+            {
+                newPoints[i] = pCurr - (nLeft * amount);
+            }
+            else
+            {
+                float miterLength = amount / dot;
+                if (miterLength > amount * 10f)
+                {
+                    miterLength = amount * 10f;
+                }
+                newPoints[i] = pCurr - (miter * miterLength);
+            }
         }
 
         return new Polygon(newPoints);
@@ -58,22 +68,5 @@ public readonly struct Polygon
         }
 
         return new Polygon(points);
-    }
-
-    private static Vector2 FindIntersection(Vector2 s1, Vector2 e1, Vector2 s2, Vector2 e2)
-    {
-        float a1 = e1.y - s1.y;
-        float b1 = s1.x - e1.x;
-        float c1 = (a1 * s1.x) + (b1 * s1.y);
-
-        float a2 = e2.y - s2.y;
-        float b2 = s2.x - e2.x;
-        float c2 = (a2 * s2.x) + (b2 * s2.y);
-
-        float delta = (a1 * b2) - (a2 * b1);
-
-        return Math.Abs(delta) < 0.001f
-            ? new Vector2(float.NaN, float.NaN)
-            : new Vector2(((b2 * c1) - (b1 * c2)) / delta, ((a1 * c2) - (a2 * c1)) / delta);
     }
 }
