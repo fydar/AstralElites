@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
             if (hit.transform.gameObject.TryGetComponent<Asteroid>(out var asteroid))
             {
                 PulseEffect.Instances[EffectId].PlayAt(hit.point, thisTransform.rotation);
-                asteroid.Hit(Damage);
+                asteroid.Hit(hit.point, transform.forward, Damage);
 
                 DestroyProjectile();
             }
@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
                     {
                         if (collider.gameObject.TryGetComponent<Asteroid>(out var otherAsteroid))
                         {
-                            otherAsteroid.Hit(Damage);
+                            otherAsteroid.Hit(hit.point, transform.right, Damage);
                         }
                     }
                 }
@@ -94,7 +94,7 @@ public class Projectile : MonoBehaviour
             {
                 if (collider.gameObject.TryGetComponent<Asteroid>(out var otherAsteroid))
                 {
-                    otherAsteroid.Hit(Damage);
+                    otherAsteroid.Hit(transform.position, Vector2.up, Damage);
                 }
             }
         }

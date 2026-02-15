@@ -66,7 +66,7 @@ public class BackgroundManager : MonoBehaviour
             var asteroid = asteroidsToKill[i];
             if (asteroid.isActiveAndEnabled)
             {
-                asteroid.Kill(false);
+                asteroid.Kill(asteroid.transform.position, asteroid.GetComponent<Rigidbody2D>().linearVelocity.normalized, false);
                 yield return new WaitForSecondsRealtime(0.1f);
             }
         }
