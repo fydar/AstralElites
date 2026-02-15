@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed133cd2f567de4daa8b60f2461ed3d, type: 3}
   m_Name: Collosal
   m_EditorClassIdentifier: 
-  Health: 2
+  Health: 4
   MinScale: 6
   MaxScale: 9
   MinSpeed: 2

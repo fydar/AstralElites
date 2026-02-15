@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed133cd2f567de4daa8b60f2461ed3d, type: 3}
   m_Name: Large
   m_EditorClassIdentifier: 
-  Health: 2
+  Health: 3
   MinScale: 3
   MaxScale: 3.5
   MinSpeed: 3
