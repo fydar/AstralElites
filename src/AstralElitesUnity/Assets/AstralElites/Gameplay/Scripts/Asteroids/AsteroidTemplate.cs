@@ -11,24 +11,25 @@ public class AsteroidTemplate : ScriptableObject
 
     [Space]
 
-    public float MinSpeed = 5.0f;
-    public float MaxSpeed = 10.0f;
+    public float Variation = 0.2f;
 
     [Space]
 
     public int MinSegments = 5;
     public int MaxSegments = 9;
 
-    [Space]
-
-    public float Variation = 0.2f;
+    [Header("Spawning")]
+    public float MinSpeed = 5.0f;
+    public float MaxSpeed = 10.0f;
 
     [Header("Death")]
     public int Reward = 50;
     [Space]
-    public AsteroidTemplate Spawn;
     public SfxGroup DestroySound;
     public SfxGroup ImpactSound;
+
+    [Header("Spawn on Death")]
+    public AsteroidTemplate Spawn;
     public int MinSpawn;
     public int MaxSpawn;
 
