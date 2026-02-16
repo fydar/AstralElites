@@ -108,6 +108,7 @@ public class Character : MonoBehaviour
         if (InputIsRotating)
         {
             physicsBody.rotation = Mathf.LerpAngle(physicsBody.rotation, InputRotationTarget, Time.deltaTime * RotationSpeed);
+            physicsBody.angularVelocity = 0;
             transform.rotation = Quaternion.Euler(0.0f, 0.0f, physicsBody.rotation);
         }
 
