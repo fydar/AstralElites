@@ -40,7 +40,10 @@ public class CharacterAIController : MonoBehaviour
 
         float angleDegrees = angleRadians * Mathf.Rad2Deg;
 
-        character.InputRotationTarget = angleDegrees + (Mathf.Sin(Time.time * 3) * 60);
+        character.InputIsThrusting = true;
         character.InputThrust = transform.right;
+
+        character.InputIsRotating = true;
+        character.InputRotationTarget = angleDegrees + (Mathf.Sin(Time.time * 3) * 60);
     }
 }
