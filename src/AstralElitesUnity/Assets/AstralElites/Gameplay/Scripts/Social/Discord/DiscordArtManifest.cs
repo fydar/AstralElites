@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using System.IO;
+using UnityEngine.Networking;
+using System.Runtime.Serialization.Json;
+using System.Collections;
 
-// #if UNITY_EDITOR
-// using UnityEditor;
-// #endif
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [DataContract]
 public struct DiscordArtAssetData
 {
-    // [{"type": 1, "id": "488014843228585984", "name": "admiral"},
-
     [DataMember]
     public int type;
     [DataMember]
@@ -46,7 +48,6 @@ public class DiscordArtManifest : ScriptableObject
     public List<DiscordArtAsset> Assets;
 }
 
-/*
 #if UNITY_EDITOR
 [CustomEditor(typeof(DiscordArtManifest))]
 public class DiscordArtManifestEditor : Editor
@@ -118,22 +119,22 @@ public class DiscordArtManifestEditor : Editor
 		{
 			string formattedArtAssetEndpoint = string.Format(ArtAssetEndpoint, data.id);
 
-			var artAssetDownload = UnityWebRequestTexture.GetTexture(formattedArtAssetEndpoint);
-
-			var request = artAssetDownload.SendWebRequest();
-
-			while (!request.isDone)
-			{
-				yield return null;
-			}
-
-			var artAssetTexture = ((DownloadHandlerTexture)artAssetDownload.downloadHandler).texture;
-
-			artAssetTexture = ChangeFormat(artAssetTexture, TextureFormat.RGB24);
-			artAssetTexture.name = ObjectNames.NicifyVariableName(data.name);
-
-			manifest.Assets.Add(new DiscordArtAsset(data.name, data.id, artAssetTexture));
-			AssetDatabase.AddObjectToAsset(artAssetTexture, target);
+			// var artAssetDownload = UnityWebRequestTexture.GetTexture(formattedArtAssetEndpoint);
+			// 
+			// var request = artAssetDownload.SendWebRequest();
+			// 
+			// while (!request.isDone)
+			// {
+			// 	yield return null;
+			// }
+			// 
+			// var artAssetTexture = ((DownloadHandlerTexture)artAssetDownload.downloadHandler).texture;
+			// 
+			// artAssetTexture = ChangeFormat(artAssetTexture, TextureFormat.RGB24);
+			// artAssetTexture.name = ObjectNames.NicifyVariableName(data.name);
+			// 
+			// manifest.Assets.Add(new DiscordArtAsset(data.name, data.id, artAssetTexture));
+			// AssetDatabase.AddObjectToAsset(artAssetTexture, target);
 		}
 		EditorUtility.SetDirty(target);
 		AssetDatabase.SaveAssets();
@@ -167,4 +168,3 @@ public class DiscordArtManifestEditor : Editor
 	}
 }
 #endif
-*/

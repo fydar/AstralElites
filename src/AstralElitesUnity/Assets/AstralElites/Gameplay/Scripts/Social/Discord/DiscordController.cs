@@ -1,5 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+
+#if UNITY_STANDALONE || UNITY_EDITOR
+using Discord.Sdk;
+using System;
+#endif
 
 public class DiscordController : MonoBehaviour
 {
@@ -13,29 +17,11 @@ public class DiscordController : MonoBehaviour
     public int LastHighscore;
 
     [Header("Services")]
-    public string applicationId;
-    public string optionalSteamId;
+    public ulong applicationId;
 
-    public DiscordRpc.RichPresence presence = new();
-    public event Action<DiscordRpc.DiscordUser> OnConnect;
-    public event Action OnDisconnect;
+    private Client client;
+    private Activity currentActivity;
 #endif
-
-    public void SetHighscore(int highscore)
-    {
-#if UNITY_STANDALONE || UNITY_EDITOR
-        var rank = Rank.GetRank(highscore);
-        LastHighscore = highscore;
-
-        presence.details = string.Format("Highscore: {0}", highscore.ToString("###,###"));
-        presence.largeImageKey = rank.DiscordAsset;
-        presence.largeImageText = "Rank: " + rank.DisplayName;
-
-        Log.Log("Setting Highscore: " + highscore.ToString("###,###") + ", rank of " + rank.DisplayName);
-
-        DiscordRpc.UpdatePresence(presence);
-#endif
-    }
 
     public void EndGame(int score)
     {
@@ -52,78 +38,117 @@ public class DiscordController : MonoBehaviour
 #if UNITY_STANDALONE || UNITY_EDITOR
         Log.Log("Starting New Game");
 
-        presence.startTimestamp = (int)DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+        var activityTimestamps = new ActivityTimestamps();
+        activityTimestamps.SetStart((ulong)DateTimeOffset.UtcNow.ToUnixTimeSeconds());
 
-        DiscordRpc.UpdatePresence(presence);
+        client.UpdateRichPresence(currentActivity, callback =>
+        {
+            if (callback.Successful())
+            {
+                Log.Log("Rich Presence Updated");
+            }
+            else
+            {
+                Log.Log(callback.ToString());
+            }
+        });
 #endif
     }
 
     private void Awake()
     {
         Instance = this;
-    }
 
 #if UNITY_STANDALONE || UNITY_EDITOR
-    private void ReadyCallback(ref DiscordRpc.DiscordUser connectedUser)
-    {
-        Log.Log(string.Format("Connected to {0}", connectedUser.username));
+        client = new Client();
+        client.SetApplicationId(applicationId);
+
+        client.Connect();
+
+        client.SetStatusChangedCallback((status, error, errorDetail) =>
+        {
+            switch (status)
+            {
+                case Client.Status.Connected:
+                    Log.Log("Connected to Discord");
+                    break;
+                case Client.Status.Disconnected:
+                    Log.Log("Disconnected from Discord");
+                    break;
+                case Client.Status.Connecting:
+                    Log.Log("Connecting to Discord");
+                    break;
+                case Client.Status.Ready:
+                    Log.Log("Ready");
+                    break;
+                case Client.Status.Reconnecting:
+                    Log.Log("Reconnecting");
+                    break;
+                case Client.Status.Disconnecting:
+                    Log.Log("Disconnecting");
+                    break;
+                case Client.Status.HttpWait:
+                    Log.Log("HttpWait");
+                    break;
+            }
+        });
+
+        currentActivity = new Activity();
+        currentActivity.SetType(ActivityTypes.Playing);
+        currentActivity.SetDetails("Shooting Asteroids");
+        currentActivity.SetStatusDisplayType(StatusDisplayTypes.Details);
 
         SetHighscore(Highscore.Value);
 
-        OnConnect?.Invoke(connectedUser);
+        client.UpdateRichPresence(currentActivity, callback =>
+        {
+            if (callback.Successful())
+            {
+                Log.Log("Rich Presence Updated");
+            }
+            else
+            {
+                Log.Log(callback.ToString());
+            }
+        });
+#endif
     }
 
-    private void DisconnectedCallback(int errorCode, string message)
+#if UNITY_EDITOR
+    private void OnApplicationQuit()
     {
-        Log.Log(string.Format("Disconnected {0}: {1}", errorCode, message));
-
-        OnDisconnect?.Invoke();
-    }
-
-    private void ErrorCallback(int errorCode, string message)
-    {
-        Log.Log(string.Format("Discord: error {0}: {1}", errorCode, message));
-    }
-
-    private void JoinCallback(string secret)
-    {
-        Log.Log(string.Format("Discord: join ({0})", secret));
-    }
-
-    private void SpectateCallback(string secret)
-    {
-        Log.Log(string.Format("Discord: spectate ({0})", secret));
-    }
-
-    private void RequestCallback(ref DiscordRpc.DiscordUser request)
-    {
-        Log.Log(string.Format("Discord: join request {0}#{1}: {2}", request.username, request.discriminator, request.userId));
-        //joinRequest = request;
-    }
-
-    private void Update()
-    {
-        DiscordRpc.RunCallbacks();
-    }
-
-    private void OnEnable()
-    {
-        Log.Log("Initializing Discord");
-
-        DiscordRpc.Events.readyCallback = ReadyCallback;
-        DiscordRpc.Events.disconnectedCallback += DisconnectedCallback;
-        DiscordRpc.Events.errorCallback += ErrorCallback;
-        DiscordRpc.Events.joinCallback += JoinCallback;
-        DiscordRpc.Events.spectateCallback += SpectateCallback;
-        DiscordRpc.Events.requestCallback += RequestCallback;
-
-        DiscordRpc.Initialize(applicationId, true, optionalSteamId);
-    }
-
-    private void OnDisable()
-    {
-        Log.Log("Shutdown");
-        DiscordRpc.Shutdown();
+        client.Disconnect();
     }
 #endif
+
+    private void SetHighscore(int highscore)
+    {
+#if UNITY_STANDALONE || UNITY_EDITOR
+        LastHighscore = highscore;
+
+        var rank = Rank.GetRank(highscore);
+
+        var assets = new ActivityAssets();
+        assets.SetLargeImage(rank.DiscordAsset);
+        assets.SetLargeText($"{rank.DisplayName} ({rank.RequiredScore:###,##0}+)");
+        assets.SetLargeUrl("https://fydar.dev/play/astralelites");
+
+        currentActivity.SetState($"Highscore: {highscore:###,##0}");
+        currentActivity.SetAssets(assets);
+
+        Log.Log($"Setting Highscore: {highscore:###,##0}, rank of {rank.DisplayName}");
+
+        client.UpdateRichPresence(currentActivity, callback =>
+        {
+            if (callback.Successful())
+            {
+                Log.Log("Rich Presence Updated");
+            }
+            else
+            {
+                Log.Log(callback.ToString());
+            }
+        });
+#endif
+    }
 }
