@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour
 {
-    public Vector3 inputThrust;
-    public float inputRotation;
-
     public Action<Collision2D> OnCollide;
 
     public SfxGroup HitSound;
@@ -42,8 +40,7 @@ public class Character : MonoBehaviour
 
     private bool canFire = true;
 
-    private Rigidbody2D rb;
-    private Camera cam;
+    private Rigidbody2D physicsBody;
     private float lastDrag;
 
     private EffectFader EngineFade;
@@ -52,12 +49,17 @@ public class Character : MonoBehaviour
 
     private readonly List<Asteroid> Contacting = new();
 
+    public bool InputIsThrusting { get; set; }
+    public Vector2 InputThrust { get; set; }
+
+    public bool InputIsRotating { get; set; }
+    public float InputRotationTarget { get; set; }
+
     public bool IsAttemptingFire => isAlive && canFire;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        cam = Camera.main;
+        physicsBody = GetComponent<Rigidbody2D>();
 
         EngineFade = new EffectFader(new DampenInterpolator() { Speed = 5 })
         {
@@ -74,7 +76,7 @@ public class Character : MonoBehaviour
             TargetValue = 0.0f
         };
 
-        lastDrag = rb.linearDamping;
+        lastDrag = physicsBody.linearDamping;
     }
 
     private void Start()
@@ -103,10 +105,13 @@ public class Character : MonoBehaviour
             return;
         }
 
-        rb.rotation = Mathf.LerpAngle(rb.rotation, inputRotation, Time.deltaTime * RotationSpeed);
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rb.rotation);
+        if (InputIsRotating)
+        {
+            physicsBody.rotation = Mathf.LerpAngle(physicsBody.rotation, InputRotationTarget, Time.deltaTime * RotationSpeed);
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, physicsBody.rotation);
+        }
 
-        if (inputThrust.magnitude > 0.02f)
+        if (InputIsThrusting)
         {
             if (!engineParticles.isPlaying)
             {
@@ -114,7 +119,7 @@ public class Character : MonoBehaviour
             }
             EngineFade.TargetValue = 1.0f;
         }
-        if (inputThrust.magnitude < 0.02f)
+        else
         {
             if (engineParticles.isPlaying)
             {
@@ -143,7 +148,10 @@ public class Character : MonoBehaviour
             ScreenManager.Clamp(transform, border);
         }
 
-        rb.AddForce(MovementSpeed * Time.fixedDeltaTime * inputThrust, ForceMode2D.Force);
+        if (InputIsThrusting)
+        {
+            physicsBody.AddForce(MovementSpeed * Time.fixedDeltaTime * InputThrust, ForceMode2D.Force);
+        }
 
         if (Contacting.Count != 0)
         {
@@ -185,8 +193,8 @@ public class Character : MonoBehaviour
         engineParticles.Stop();
         isAlive = false;
 
-        lastDrag = rb.linearDamping;
-        rb.linearDamping = 0;
+        lastDrag = physicsBody.linearDamping;
+        physicsBody.linearDamping = 0;
         Contacting.Clear();
 
         foreach (var trail in engineTrails)
@@ -197,13 +205,13 @@ public class Character : MonoBehaviour
 
     public void Revive()
     {
-        rb.linearVelocity = Vector2.zero;
+        physicsBody.linearVelocity = Vector2.zero;
         isAlive = true;
         Health.Value = 100;
 
-        rb.linearDamping = lastDrag;
-        rb.position = ScreenManager.RandomBorderPoint(-30);
-        transform.position = rb.position;
+        physicsBody.linearDamping = lastDrag;
+        physicsBody.position = ScreenManager.RandomBorderPoint(-30);
+        transform.position = physicsBody.position;
         canFire = false;
         Invoke(nameof(WarpIntoScene), 0.25f);
         Invoke(nameof(StartShooting), 1.25f);
@@ -220,9 +228,9 @@ public class Character : MonoBehaviour
     {
         AudioManager.Play(WarpSound);
 
-        Vector3 direction = -rb.position;
+        Vector3 direction = -physicsBody.position;
 
-        rb.AddForce(direction * WarpForce, ForceMode2D.Impulse);
+        physicsBody.AddForce(direction * WarpForce, ForceMode2D.Impulse);
     }
 
     private void StartShooting()
