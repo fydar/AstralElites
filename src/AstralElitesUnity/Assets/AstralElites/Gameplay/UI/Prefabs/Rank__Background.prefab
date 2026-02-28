@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3689060717144957197, guid: 41902b974241bf1438e118823c61270f, type: 3}
       propertyPath: m_Name
-      value: Rank Variant
+      value: Rank__Background
       objectReference: {fileID: 0}
     - target: {fileID: 5920493800716077239, guid: 41902b974241bf1438e118823c61270f, type: 3}
       propertyPath: m_Pivot.x
