@@ -909,7 +909,7 @@ MonoBehaviour:
     - line: '|   webGLDebugSymbols: 1'
     - line: '|   webGLEmscriptenArgs: '
     - line: '|   webGLModulesDirectory: '
-    - line: '|   webGLTemplate: APPLICATION:PWA'
+    - line: '|   webGLTemplate: PROJECT:AstralElites'
     - line: '|   webGLAnalyzeBuildSize: 0'
     - line: '|   webGLUseEmbeddedResources: 0'
     - line: '|   webGLCompressionFormat: 0'

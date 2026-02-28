@@ -1,0 +1,17 @@
+{
+    "name": "Astral Elites",
+    "short_name": "Astral Elites",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#161618",
+    "theme_color": "#000",
+    "description": "",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "48x48 72x72 96x96 128x128 256x256 512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}
