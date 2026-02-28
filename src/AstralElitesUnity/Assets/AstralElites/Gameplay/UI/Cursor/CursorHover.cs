@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class CursorHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public SfxGroup HoverSound;
-    public SfxGroup ClickSound;
+    public BunnyReference<SfxGroup> HoverSoundAsset;
+    public BunnyReference<SfxGroup> ClickSoundAsset;
 
     private Button button;
 
@@ -34,9 +34,9 @@ public class CursorHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         CursorManager.SetCursor("Hand");
 
-        if (HoverSound)
+        if (HoverSoundAsset != BunnyReference<SfxGroup>.None)
         {
-            AudioManager.Play(HoverSound);
+            AudioManager.Play(HoverSoundAsset);
         }
 
         isHovering = true;
@@ -61,9 +61,9 @@ public class CursorHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return;
         }
 
-        if (ClickSound)
+        if (ClickSoundAsset != BunnyReference<SfxGroup>.None)
         {
-            AudioManager.Play(ClickSound);
+            AudioManager.Play(ClickSoundAsset);
         }
     }
 }

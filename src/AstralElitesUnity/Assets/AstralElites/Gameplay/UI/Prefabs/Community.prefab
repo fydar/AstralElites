@@ -712,8 +712,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &3946262894575909021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,8 +1437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!1 &8707354394219451765
 GameObject:
   m_ObjectHideFlags: 0

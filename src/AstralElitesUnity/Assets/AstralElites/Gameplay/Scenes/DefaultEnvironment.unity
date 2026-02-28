@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Identifier: Explosion1
-  Audio: []
+  AudioAssets: []
   Particles:
   - {fileID: 1072615300}
   FlipAfterPlay: 0
@@ -5326,7 +5326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Identifier: Explosion2
-  Audio: []
+  AudioAssets: []
   Particles:
   - {fileID: 1162915633}
   FlipAfterPlay: 0
@@ -20202,7 +20202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Identifier: LaserHit1
-  Audio: []
+  AudioAssets: []
   Particles:
   - {fileID: 1814901562}
   FlipAfterPlay: 0

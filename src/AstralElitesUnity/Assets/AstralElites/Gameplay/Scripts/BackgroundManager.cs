@@ -29,8 +29,8 @@ public class BackgroundManager : MonoBehaviour
                     ScreenEffect.Instance.Pulse(1.0f);
                     Camera.main.GetComponent<PerlinShake>().PlayShake(1.0f);
 
-                    AudioManager.Play(player.HitSound);
-                    AudioManager.Play(player.DestroySound);
+                    AudioManager.Play(player.HitSoundAsset);
+                    AudioManager.Play(player.DestroySoundAsset);
 
                     player.Kill();
 

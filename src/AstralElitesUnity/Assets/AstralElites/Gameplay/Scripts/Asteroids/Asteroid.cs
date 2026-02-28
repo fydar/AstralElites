@@ -155,11 +155,11 @@ public class Asteroid : MonoBehaviour
         if (health <= 0)
         {
             Kill(impactOrigin, impactNormal);
-            AudioManager.Play(template.DestroySound);
+            AudioManager.Play(template.DestroySoundAsset);
         }
         else
         {
-            AudioManager.Play(template.ImpactSound);
+            AudioManager.Play(template.ImpactSoundAsset);
             AsteroidHitParticles.Fire(impactOrigin, impactNormal, 1, this);
         }
     }

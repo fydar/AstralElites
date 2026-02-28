@@ -5,7 +5,7 @@ public class FirePoint : MonoBehaviour
     [Header("Combat")]
     public float FireCooldown = 0.1f;
     public GameObjectPool<Projectile> WeaponProjectile;
-    public SfxGroup ShootSound;
+    public BunnyReference<SfxGroup> ShootSoundAsset;
 
     [SerializeField] private Character _owner;
     private float _nextFireTime;
@@ -29,9 +29,9 @@ public class FirePoint : MonoBehaviour
         var projectile = WeaponProjectile.Grab();
         projectile.transform.SetPositionAndRotation(transform.position, transform.rotation);
 
-        if (ShootSound != null)
+        if (ShootSoundAsset != BunnyReference<SfxGroup>.None)
         {
-            AudioManager.Play(ShootSound);
+            AudioManager.Play(ShootSoundAsset);
         }
 
         projectile.LifetimeRemaining = projectile.Lifetime;

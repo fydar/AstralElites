@@ -435,15 +435,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc94b8929680f449ab4f0729fab105f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputThrust: {x: 0, y: 0, z: 0}
-  inputRotation: 0
-  HitSound: {fileID: 11400000, guid: 48444fb48272cd8408cd96d26cf6b3e4, type: 2}
-  DestroySound: {fileID: 11400000, guid: 66b603d758db01440a27cc92bbcc7966, type: 2}
-  WarpSound: {fileID: 11400000, guid: 6f6a825274248c04ea1e3391787a4409, type: 2}
-  GravelHitSound: {fileID: 0}
-  EngineSound: {fileID: 0}
-  AlarmSound: {fileID: 11400000, guid: 18043b90ac2ad074d932b98bfd8f8c5c, type: 2}
-  ScrapingSound: {fileID: 11400000, guid: d8bea201fdf45774eb4d0667932dd5e5, type: 2}
+  HitSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Metal Impact
+  DestroySoundAsset:
+    assetBundleName: sfx.data
+    assetName: Broken Device
+  WarpSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hyperspace Enter
+  GravelHitSoundAsset:
+    assetBundleName: 
+    assetName: 
+  EngineSoundAsset:
+    assetBundleName: 
+    assetName: 
+  AlarmSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Alarm
+  ScrapingSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Scraping
   DamageFromVelocity:
     serializedVersion: 2
     m_Curve:
@@ -580,7 +592,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: 409b4e9b7f4c0c749bdb4ef57f5e05b4, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 11400000, guid: 7453347ee6dbbf64483a72039d7cae4a, type: 2}
+  ShootSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Light Repeating Blaster
   _owner: {fileID: 8706720361587827532}
 --- !u!1 &6836046565363428002
 GameObject:

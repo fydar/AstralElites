@@ -15,14 +15,18 @@ MonoBehaviour:
   Health: 1
   MinScale: 0.5
   MaxScale: 0.7
-  MinSpeed: 7
-  MaxSpeed: 9
+  Variation: 0.3
   MinSegments: 5
   MaxSegments: 6
-  Variation: 0.3
+  MinSpeed: 7
+  MaxSpeed: 9
   Reward: 10
+  DestroySoundAsset:
+    assetBundleName: sfx.data
+    assetName: Impact Quiet
+  ImpactSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Impact Quiet
   Spawn: {fileID: 0}
-  DestroySound: {fileID: 11400000, guid: 23a1847c83c4918459a0472b8f1cf1fd, type: 2}
-  ImpactSound: {fileID: 11400000, guid: 23a1847c83c4918459a0472b8f1cf1fd, type: 2}
   MinSpawn: 0
   MaxSpawn: 0

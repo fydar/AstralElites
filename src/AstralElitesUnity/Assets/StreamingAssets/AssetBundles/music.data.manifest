@@ -1,11 +1,11 @@
 ManifestFileVersion: 0
 UnityVersion: 6000.3.6f1
-CRC: 956216272
+CRC: 648405282
 Compression: LZ4HC
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8ea948348688a017a0734948bcfa2775
+    Hash: d6f8fb46f80052cdcdbed63f39edbb36
   TypeTreeHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -23,5 +23,4 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/AstralElites/Gameplay/Audio/Ambient/Main.asset
-- Assets/AstralElites/Gameplay/Audio/Ambient/Licensed/Ambient 1.ogg
 Dependencies: []

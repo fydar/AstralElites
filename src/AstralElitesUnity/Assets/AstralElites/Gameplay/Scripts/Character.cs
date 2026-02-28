@@ -7,15 +7,15 @@ public class Character : MonoBehaviour
 {
     public Action<Collision2D> OnCollide;
 
-    public SfxGroup HitSound;
-    public SfxGroup DestroySound;
-    public SfxGroup WarpSound;
-    public SfxGroup GravelHitSound;
+    public BunnyReference<SfxGroup> HitSoundAsset;
+    public BunnyReference<SfxGroup> DestroySoundAsset;
+    public BunnyReference<SfxGroup> WarpSoundAsset;
+    public BunnyReference<SfxGroup> GravelHitSoundAsset;
 
     [Space]
-    public LoopGroup EngineSound;
-    public LoopGroup AlarmSound;
-    public LoopGroup ScrapingSound;
+    public BunnyReference<LoopGroup> EngineSoundAsset;
+    public BunnyReference<LoopGroup> AlarmSoundAsset;
+    public BunnyReference<LoopGroup> ScrapingSoundAsset;
 
     [Header("Health")]
     public EventField<int> Health;
@@ -81,12 +81,12 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        if (EngineSound != null)
+        if (EngineSoundAsset != BunnyReference<LoopGroup>.None)
         {
-            AudioManager.Play(EngineSound, EngineFade);
+            AudioManager.Play(EngineSoundAsset, EngineFade);
         }
-        AudioManager.Play(AlarmSound, AlarmFade);
-        AudioManager.Play(ScrapingSound, ScrapingFade);
+        AudioManager.Play(AlarmSoundAsset, AlarmFade);
+        AudioManager.Play(ScrapingSoundAsset, ScrapingFade);
     }
 
     private Vector3 lastPosition;
@@ -171,7 +171,7 @@ public class Character : MonoBehaviour
         {
             if (Health.Value > 0)
             {
-                AudioManager.Play(HitSound);
+                AudioManager.Play(HitSoundAsset);
             }
 
             Contacting.Add(collidingAsteroid);
@@ -227,7 +227,7 @@ public class Character : MonoBehaviour
 
     private void WarpIntoScene()
     {
-        AudioManager.Play(WarpSound);
+        AudioManager.Play(WarpSoundAsset);
 
         Vector3 direction = -physicsBody.position;
 

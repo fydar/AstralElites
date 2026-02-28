@@ -19,8 +19,8 @@ public class Accordion : MonoBehaviour
     public Vector3 startScale;
     public Vector3 endScale;
 
-    public SfxGroup ExpandSound;
-    public SfxGroup ContractSound;
+    public BunnyReference<SfxGroup> ExpandSoundAsset;
+    public BunnyReference<SfxGroup> ContractSoundAsset;
 
     private float StartingHeight = 30.0f;
     private bool Toggled = false;
@@ -53,13 +53,13 @@ public class Accordion : MonoBehaviour
     {
         if (Toggled)
         {
-            AudioManager.Play(ContractSound);
+            AudioManager.Play(ContractSoundAsset);
             Interpolator.TargetValue = 0.0f;
             Toggled = false;
         }
         else
         {
-            AudioManager.Play(ExpandSound);
+            AudioManager.Play(ExpandSoundAsset);
             Interpolator.TargetValue = 1.0f;
             Toggled = true;
         }

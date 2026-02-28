@@ -25,8 +25,8 @@ public class AsteroidTemplate : ScriptableObject
     [Header("Death")]
     public int Reward = 50;
     [Space]
-    public SfxGroup DestroySound;
-    public SfxGroup ImpactSound;
+    public BunnyReference<SfxGroup> DestroySoundAsset;
+    public BunnyReference<SfxGroup> ImpactSoundAsset;
 
     [Header("Spawn on Death")]
     public AsteroidTemplate Spawn;

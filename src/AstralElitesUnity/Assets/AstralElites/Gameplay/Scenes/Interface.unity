@@ -393,8 +393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
+  ClickSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Click
 --- !u!114 &89447896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3976,8 +3980,12 @@ MonoBehaviour:
   HUD: {fileID: 959646397}
   End: {fileID: 87630170}
   Community: {fileID: 0}
-  OpenPauseMenu: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
-  ClosePauseMenu: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  OpenPauseMenuAsset:
+    assetBundleName: sfx.data
+    assetName: Click
+  ClosePauseMenuAsset:
+    assetBundleName: sfx.data
+    assetName: Click
   Fader: {fileID: 1594107216}
   fadeSpeed: 2.5
 --- !u!114 &1677947746
@@ -4148,8 +4156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
+  ClickSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Click
 --- !u!1 &1679473054
 GameObject:
   m_ObjectHideFlags: 0
@@ -4212,6 +4224,7 @@ GameObject:
   - component: {fileID: 1701632188}
   - component: {fileID: 1701632187}
   - component: {fileID: 1701632186}
+  - component: {fileID: 1701632191}
   m_Layer: 5
   m_Name: Expander
   m_TagString: Untagged
@@ -4283,8 +4296,12 @@ MonoBehaviour:
   Arrow: {fileID: 831576776}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: -1, y: 1, z: 1}
-  ExpandSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ContractSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
+  ExpandSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
+  ContractSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
 --- !u!114 &1701632187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4399,6 +4416,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701632184}
   m_CullTransparentMesh: 0
+--- !u!114 &1701632191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701632184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!1 &1723131462
 GameObject:
   m_ObjectHideFlags: 0
@@ -5014,6 +5049,7 @@ GameObject:
   - component: {fileID: 2055276680}
   - component: {fileID: 2055276681}
   - component: {fileID: 2055276682}
+  - component: {fileID: 2055276683}
   m_Layer: 5
   m_Name: Expander
   m_TagString: Untagged
@@ -5199,8 +5235,30 @@ MonoBehaviour:
   Arrow: {fileID: 957407945}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: -1, y: 1, z: 1}
-  ExpandSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ContractSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
+  ExpandSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
+  ContractSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hover
+--- !u!114 &2055276683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055276676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &2056539543 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8706720361587827532, guid: bf164c2c691995c4b8a5851b5d3d7119, type: 3}

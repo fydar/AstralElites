@@ -8,7 +8,7 @@ public class PulseEffect : MonoBehaviour, ISerializationCallbackReceiver
     public string Identifier;
 
     [Header("Elements")]
-    public SfxGroup[] Audio;
+    public BunnyReference<SfxGroup>[] AudioAssets;
     public ParticleSystem[] Particles;
     public bool FlipAfterPlay;
 
@@ -68,7 +68,7 @@ public class PulseEffect : MonoBehaviour, ISerializationCallbackReceiver
     {
         transform.position = positon;
 
-        foreach (var source in Audio)
+        foreach (var source in AudioAssets)
         {
             AudioManager.Play(source);
         }

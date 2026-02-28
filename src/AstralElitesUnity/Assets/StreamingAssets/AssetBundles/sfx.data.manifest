@@ -1,0 +1,38 @@
+ManifestFileVersion: 0
+UnityVersion: 6000.3.6f1
+CRC: 1981571373
+Compression: LZ4HC
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d9bea74c7bec094f314bda9599abd974
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2126dc9f5bc9e8844bc4beb267998b3e, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AstralElites/Gameplay/Audio/Alarm/Alarm.asset
+- Assets/AstralElites/Gameplay/Audio/Metal Grinding/Scraping.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact High.asset
+- Assets/AstralElites/Gameplay/Audio/Whooshes/Hyperspace Enter.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Metal Impact.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Low.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Broken Device.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi UI/Hover.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Quiet.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi UI/Click.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Light Repeating Blaster.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Base.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Rifle.asset
+Dependencies: []

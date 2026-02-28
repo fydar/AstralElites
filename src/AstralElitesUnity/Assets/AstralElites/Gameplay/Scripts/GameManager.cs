@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
 
     private AnalyticsManager analytic;
 
-    public SfxGroup OpenPauseMenu;
-    public SfxGroup ClosePauseMenu;
+    public BunnyReference<SfxGroup> OpenPauseMenuAsset;
+    public BunnyReference<SfxGroup> ClosePauseMenuAsset;
 
     public CanvasGroup Fader;
     public float fadeSpeed = 2.5f;
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.PlayMusic("Main");
+        AudioManager.PlayMusic(new BunnyReference<MusicGroup>("music.data", "Main"));
 
         player.GetComponent<CharacterPlayerController>().enabled = true;
 
@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
                 if (player.isAlive)
                 {
                     player.Kill();
-                    AudioManager.Play(player.HitSound);
-                    AudioManager.Play(player.DestroySound);
+                    AudioManager.Play(player.HitSoundAsset);
+                    AudioManager.Play(player.DestroySoundAsset);
                     ScreenEffect.Instance.Pulse(1.0f);
                     Camera.main.GetComponent<PerlinShake>().PlayShake(1.0f);
                     EndGame();
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
 		if (playState != PlayState.Paused
 			&& playState != PlayState.Ended)
         {
-            AudioManager.Play(OpenPauseMenu);
+            AudioManager.Play(OpenPauseMenuAsset);
         }
         Pause();
     }
@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
 
         interpolator.TargetValue = 0.0f;
 
-        AudioManager.Play(ClosePauseMenu);
+        AudioManager.Play(ClosePauseMenuAsset);
     }
 
     public void UI_Exit()

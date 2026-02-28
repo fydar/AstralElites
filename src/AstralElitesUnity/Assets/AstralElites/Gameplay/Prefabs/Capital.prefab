@@ -55,15 +55,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc94b8929680f449ab4f0729fab105f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputThrust: {x: 0, y: 0, z: 0}
-  inputRotation: 0
-  HitSound: {fileID: 11400000, guid: 48444fb48272cd8408cd96d26cf6b3e4, type: 2}
-  DestroySound: {fileID: 11400000, guid: 66b603d758db01440a27cc92bbcc7966, type: 2}
-  WarpSound: {fileID: 11400000, guid: 6f6a825274248c04ea1e3391787a4409, type: 2}
-  GravelHitSound: {fileID: 0}
-  EngineSound: {fileID: 0}
-  AlarmSound: {fileID: 11400000, guid: 18043b90ac2ad074d932b98bfd8f8c5c, type: 2}
-  ScrapingSound: {fileID: 11400000, guid: d8bea201fdf45774eb4d0667932dd5e5, type: 2}
+  HitSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Metal Impact
+  DestroySoundAsset:
+    assetBundleName: sfx.data
+    assetName: Broken Device
+  WarpSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Hyperspace Enter
+  GravelHitSoundAsset:
+    assetBundleName: 
+    assetName: 
+  EngineSoundAsset:
+    assetBundleName: 
+    assetName: 
+  AlarmSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Alarm
+  ScrapingSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Scraping
   DamageFromVelocity:
     serializedVersion: 2
     m_Curve:
@@ -138,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: AstralElites.Gameplay::CharacterPlayerController
   analogMovementInput: {fileID: -1680190386980627800, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
+  analogLookInput: {fileID: 0}
 --- !u!114 &4677882850374733717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +212,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: c127a01d5fb90d646a792fd1ba8ab79c, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 0}
+  ShootSoundAsset:
+    assetBundleName: 
+    assetName: 
   _owner: {fileID: 6767255623889297542}
 --- !u!1 &3155976549085684195
 GameObject:
@@ -250,7 +265,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: c127a01d5fb90d646a792fd1ba8ab79c, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 11400000, guid: bccd202fd92fc334697b93dc7c5790af, type: 2}
+  ShootSoundAsset:
+    assetBundleName: sfx.data
+    assetName: Rifle
   _owner: {fileID: 6767255623889297542}
 --- !u!1 &4399950345202535035
 GameObject:
@@ -474,7 +491,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: c127a01d5fb90d646a792fd1ba8ab79c, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 0}
+  ShootSoundAsset:
+    assetBundleName: 
+    assetName: 
   _owner: {fileID: 6767255623889297542}
 --- !u!82 &5325096522402987160
 AudioSource:
@@ -5621,7 +5640,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: c127a01d5fb90d646a792fd1ba8ab79c, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 11400000, guid: bccd202fd92fc334697b93dc7c5790af, type: 2}
+  ShootSoundAsset:
+    assetBundleName: 
+    assetName: 
   _owner: {fileID: 6767255623889297542}
 --- !u!1 &7161848608984034733
 GameObject:
@@ -5823,7 +5844,9 @@ MonoBehaviour:
     Template: {fileID: 114404358654912924, guid: c127a01d5fb90d646a792fd1ba8ab79c, type: 3}
     Reuse: 1
     PrewarmAmount: 8
-  ShootSound: {fileID: 0}
+  ShootSoundAsset:
+    assetBundleName: 
+    assetName: 
   _owner: {fileID: 6767255623889297542}
 --- !u!1 &8686641120007052436
 GameObject:
