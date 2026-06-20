@@ -6,11 +6,11 @@ namespace HuskyUnity.Engineering.SceneOwnership
 {
     public static class OwnershipUtilities
     {
-        private static readonly Dictionary<int, ISceneOwner> handleToOwner;
+        private static readonly Dictionary<SceneHandle, ISceneOwner> handleToOwner;
 
         static OwnershipUtilities()
         {
-            handleToOwner = new Dictionary<int, ISceneOwner>();
+            handleToOwner = new Dictionary<SceneHandle, ISceneOwner>();
 
             SceneManager.sceneUnloaded += OnBeforeSceneUnloaded;
         }

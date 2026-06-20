@@ -29,7 +29,7 @@ public static class BunnyLoader
         Cache.Clear();
         foreach (var state in ActiveDownloads.Values)
         {
-            if (state.WebRequest != null) state.WebRequest.Dispose();
+            state.WebRequest?.Dispose();
         }
         ActiveDownloads.Clear();
     }

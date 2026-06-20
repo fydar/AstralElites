@@ -16,22 +16,70 @@ MonoBehaviour:
   RemoveEmbeddedDebugSymbols: 1
   MissingSubmoduleErrorHandling: 0
   SubmodulesToStrip:
+  - 2D Rendering Common
   - 2D Rendering Sprite Tiling
   - Advanced Text Generator Support
+  - AndroidJNIModule
+  - Animation Constraints
+  - Animation Script Bindings
+  - Clipper
+  - double-conversion
+  - Expression Evaluator
   - Freetype2
   - GPU Instancing
-  - Mesh Blend Shapes
-  - Mesh Skinning
+  - GPU Resident Drawer Core
+  - HierarchyCore Script Bindings
+  - IMGUI Script Bindings
+  - libjpeg
+  - libpng
+  - Mono Globalization
+  - Mono Runtime
   - Newtonsoft Json.NET
+  - ParticleSystem Events
+  - ParticleSystem Sub Emitters Module
+  - PhysX
   - System.ComponentModel Extra
   - System.Data
+  - System.DateTimeOffset
+  - System.DateTimeParse
+  - System.Dynamic
+  - System.Numerics.Vector<T>
   - System.Security
+  - System.TimeZoneInfo
   - System.Xml
   - TetGen
+  - Text Editing Utilities
+  - Text Selecting Utilities
+  - TextCore
   - Texture Decompression BC
   - Texture Decompression DXT
   - Texture Decompression ETC
   - Texture Decompression Crunch
+  - Tilemap
   - UI Toolkit Framework
+  - Unity 2D Core
+  - Unity Collections - FixedList128Bytes
+  - Unity Collections - FixedList32Bytes
+  - Unity Collections - FixedList4096Bytes
+  - Unity Collections - FixedList512Bytes
+  - Unity Collections - FixedList64Bytes
+  - Unity Collections - NativeBitArray
+  - Unity Collections - NativeHashMap
+  - Unity Collections - NativeHashSet
+  - Unity Collections - NativeParallelHashMap
+  - Unity Collections - NativeParallelHashSet
+  - Unity Collections - NativeQueue
+  - Unity Collections - NativeReference
+  - Unity Collections - NativeRingQueue
+  - Unity Collections - NativeStream
+  - Unity Collections - NativeText
+  - Unity Collections - UnsafeAtomicCounter32
+  - Unity Collections - UnsafeBitArray
+  - Unity Collections - UnsafeHashMap
+  - Unity Collections - UnsafeParallelHashMap
+  - Unity Collections - UnsafeRingQueue
+  - Unity Collections - UnsafeStream
+  - Unity Collections - UnsafeText
+  - Unity In-App Purchasing
   - WebGL Support
-  - Compute Shader Support
+  - zlib
