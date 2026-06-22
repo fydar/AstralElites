@@ -24,7 +24,7 @@ public class EventFieldChainHandler<T, TChild> : IEventFieldHandler
             return;
         }
 
-        ChainedField.Handlers[this].Clear();
+        ChainedField.handlers[this].Clear();
     }
 
     public void OnAfterChanged()
@@ -36,19 +36,19 @@ public class EventFieldChainHandler<T, TChild> : IEventFieldHandler
             return;
         }
 
-        ChainedField.Handlers[this] += new EventFieldMirrorHandler<TChild>(ChainedField, TargetField);
+        ChainedField.handlers[this] += new EventFieldMirrorHandler<TChild>(ChainedField, TargetField);
         TargetField.Value = ChainedField.Value;
     }
 
     public void Dispose()
     {
-        SourceField.Handlers[TargetField].Clear();
+        SourceField.handlers[TargetField].Clear();
 
         if (ChainedField == null)
         {
             return;
         }
 
-        ChainedField.Handlers[this].Clear();
+        ChainedField.handlers[this].Clear();
     }
 }

@@ -21,6 +21,7 @@ MonoBehaviour:
   - Advanced Text Generator Support
   - AndroidJNIModule
   - Animation Constraints
+  - Animation Human
   - Animation Script Bindings
   - Clipper
   - double-conversion
@@ -43,7 +44,6 @@ MonoBehaviour:
   - System.DateTimeOffset
   - System.DateTimeParse
   - System.Dynamic
-  - System.Numerics.Vector<T>
   - System.Security
   - System.TimeZoneInfo
   - System.Xml
@@ -57,29 +57,7 @@ MonoBehaviour:
   - Texture Decompression Crunch
   - Tilemap
   - UI Toolkit Framework
-  - Unity 2D Core
-  - Unity Collections - FixedList128Bytes
-  - Unity Collections - FixedList32Bytes
-  - Unity Collections - FixedList4096Bytes
-  - Unity Collections - FixedList512Bytes
-  - Unity Collections - FixedList64Bytes
-  - Unity Collections - NativeBitArray
-  - Unity Collections - NativeHashMap
-  - Unity Collections - NativeHashSet
-  - Unity Collections - NativeParallelHashMap
-  - Unity Collections - NativeParallelHashSet
-  - Unity Collections - NativeQueue
-  - Unity Collections - NativeReference
-  - Unity Collections - NativeRingQueue
-  - Unity Collections - NativeStream
-  - Unity Collections - NativeText
-  - Unity Collections - UnsafeAtomicCounter32
-  - Unity Collections - UnsafeBitArray
-  - Unity Collections - UnsafeHashMap
-  - Unity Collections - UnsafeParallelHashMap
-  - Unity Collections - UnsafeRingQueue
-  - Unity Collections - UnsafeStream
-  - Unity Collections - UnsafeText
+  - Unity 2D Feature Set
   - Unity In-App Purchasing
   - WebGL Support
   - zlib

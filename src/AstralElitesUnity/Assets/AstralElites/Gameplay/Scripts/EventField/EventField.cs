@@ -22,7 +22,7 @@ public class EventField<T> : IDisposable
 
             public void Clear()
             {
-                Field.Handlers.Clear(Context);
+                Field.handlers.Clear(Context);
             }
 
             public static ContextWrapped operator +(ContextWrapped left, IEventFieldHandler right)
@@ -107,41 +107,41 @@ public class EventField<T> : IDisposable
         }
     }
 
-    public HandlerCollection Handlers;
     public Action OnBeforeChanged;
     public Action OnAfterChanged;
 
     private T internalValue;
+    internal HandlerCollection handlers;
 
     public T Value
     {
         get => internalValue;
         set
         {
-            Handlers.InvokeBeforeChanged();
+            handlers.InvokeBeforeChanged();
             OnBeforeChanged?.Invoke();
 
             internalValue = value;
 
-            Handlers.InvokeAfterChanged();
+            handlers.InvokeAfterChanged();
             OnAfterChanged?.Invoke();
         }
     }
 
     public EventField()
     {
-        Handlers = new HandlerCollection(this);
+        handlers = new HandlerCollection(this);
     }
 
     public EventField<TChild> Watch<TChild>(Func<T, EventField<TChild>> chain)
     {
         var watcher = new EventField<TChild>();
-        Handlers[watcher] += new EventFieldChainHandler<T, TChild>(this, watcher, chain);
+        handlers[watcher] += new EventFieldChainHandler<T, TChild>(this, watcher, chain);
         return watcher;
     }
 
     public void Dispose()
     {
-        Handlers.Dispose();
+        handlers.Dispose();
     }
 }

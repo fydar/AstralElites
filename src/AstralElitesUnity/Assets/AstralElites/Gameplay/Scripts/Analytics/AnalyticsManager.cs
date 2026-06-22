@@ -6,14 +6,15 @@ public class AnalyticsManager : MonoBehaviour
 
     public Character target;
 
-    public AnalyticsHook<Collision2D> Collisions;
-
     public AnalyticsHook_Int healthHook;
     public AnalyticsHook_Int scoreHook;
     public AnalyticsHook_Int asteroidsDestroyedHook;
     public AnalyticsHook_Float distanceTravelledHook;
 
     private GameManager gameManager;
+    private AnalyticsHook<Collision2D> collisions;
+
+    public Collision2D LastCollision => collisions?.Last;
 
     private void Awake()
     {
@@ -29,8 +30,8 @@ public class AnalyticsManager : MonoBehaviour
         asteroidsDestroyedHook = new AnalyticsHook_Int(gameManager.AsteroidsDestroyed);
         distanceTravelledHook = new AnalyticsHook_Float(gameManager.DistanceTravelled);
 
-        Collisions = new AnalyticsHook<Collision2D>();
-        target.OnCollide += Collisions.Callback;
+        collisions = new AnalyticsHook<Collision2D>();
+        target.OnCollide += collisions.Callback;
     }
 
     public void Clear()
