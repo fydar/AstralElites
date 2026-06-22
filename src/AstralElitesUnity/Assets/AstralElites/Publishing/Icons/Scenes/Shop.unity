@@ -3314,6 +3314,7 @@ GameObject:
   - component: {fileID: 1207388128}
   - component: {fileID: 1207388129}
   - component: {fileID: 1207388130}
+  - component: {fileID: 1207388131}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3376,6 +3377,24 @@ MonoBehaviour:
     Value: 0
     Velocity: 0
   PulseVelocity: 10
+  SleepThreshold: 0.001
+--- !u!114 &1207388131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207388127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!1 &1221386951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,8 +3651,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &1386257218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9155,9 +9178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c045d0d53720b47b548160870947f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 551806850}
-  ScaleToScene:
-  - {fileID: 1475167978}
+  defaultSize: 5
+  environmentCamera: {fileID: 0}
+  scaleToScene: []
 --- !u!1 &1594107213
 GameObject:
   m_ObjectHideFlags: 0
@@ -9244,6 +9267,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -9986,6 +10010,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 871757769

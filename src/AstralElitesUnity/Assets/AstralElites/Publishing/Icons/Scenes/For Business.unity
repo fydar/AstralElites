@@ -437,6 +437,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -857,6 +858,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -932,8 +934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &89447896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6652,9 +6658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c045d0d53720b47b548160870947f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 551806850}
-  ScaleToScene:
-  - {fileID: 793801529}
+  defaultSize: 5
+  environmentCamera: {fileID: 0}
+  scaleToScene: []
 --- !u!4 &172857839
 Transform:
   m_ObjectHideFlags: 0
@@ -6937,6 +6943,10 @@ MonoBehaviour:
   m_Color: {r: 0.735849, g: 0.3019758, b: 0.3019758, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -8224,6 +8234,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8385,7 +8396,10 @@ MonoBehaviour:
   DurationText: {fileID: 952466581}
   ScoreText: {fileID: 1589665583}
   RankText: {fileID: 63762918}
+  NextRankRow: {fileID: 0}
+  NextRankValueText: {fileID: 0}
   RankDisplay: {fileID: 1139312859}
+  RankAbbreviationText: {fileID: 0}
   TotalAsteroidsText: {fileID: 1418270368}
   PerformanceText: {fileID: 1111499207}
   DistanceTravelledText: {fileID: 1905065004}
@@ -9860,7 +9874,10 @@ MonoBehaviour:
   DurationText: {fileID: 1578020740}
   ScoreText: {fileID: 517579497}
   RankText: {fileID: 1692081955}
+  NextRankRow: {fileID: 0}
+  NextRankValueText: {fileID: 0}
   RankDisplay: {fileID: 1223010138}
+  RankAbbreviationText: {fileID: 0}
   TotalAsteroidsText: {fileID: 1352181482}
   PerformanceText: {fileID: 1407418107}
   DistanceTravelledText: {fileID: 4017894}
@@ -11258,7 +11275,6 @@ MonoBehaviour:
   Highscore: {fileID: 11400000, guid: 3e977689c193bfc469a5ec97cc2807fe, type: 2}
   LastHighscore: 0
   applicationId: 487740611378675713
-  optionalSteamId: 
 --- !u!4 &647158486
 Transform:
   m_ObjectHideFlags: 0
@@ -11505,6 +11521,7 @@ MonoBehaviour:
   FadeOutTime: 0.5
   Name: {fileID: 189190771}
   RankDisplay: {fileID: 270148211}
+  Description: {fileID: 0}
 --- !u!1 &674141291
 GameObject:
   m_ObjectHideFlags: 0
@@ -17167,8 +17184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!1 &819260795
 GameObject:
   m_ObjectHideFlags: 0
@@ -17222,6 +17243,10 @@ MonoBehaviour:
   m_Color: {r: 0.3962264, g: 0.20745817, b: 0.20745817, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -18101,6 +18126,10 @@ MonoBehaviour:
   m_Color: {r: 0.3962264, g: 0.20745817, b: 0.20745817, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -18168,6 +18197,10 @@ MonoBehaviour:
   m_Color: {r: 0.24470451, g: 0.3679245, b: 0.28577784, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -18487,6 +18520,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1764160577
@@ -19144,6 +19178,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -19161,8 +19196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc109a6775c3b434095622a4e330bcb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: {fileID: 11400000, guid: 022a872ca05120346a5ca87b49dd8af7, type: 2}
-  InterpolationSpeed: 20
+  valueSource: {fileID: 0}
+  interpolationSpeed: 10
 --- !u!114 &1033443241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20632,6 +20667,7 @@ GameObject:
   - component: {fileID: 1207388128}
   - component: {fileID: 1207388129}
   - component: {fileID: 1207388130}
+  - component: {fileID: 1207388131}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -20694,6 +20730,24 @@ MonoBehaviour:
     Value: 0
     Velocity: 0
   PulseVelocity: 10
+  SleepThreshold: 0.001
+--- !u!114 &1207388131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207388127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!1 &1213966905
 GameObject:
   m_ObjectHideFlags: 0
@@ -26419,6 +26473,10 @@ MonoBehaviour:
   m_Color: {r: 0.41176474, g: 0.6666667, b: 0.43137258, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -26531,9 +26589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5b5ec46e2c6864d95a83678424aae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeText: {fileID: 554189465}
-  HourHand: {fileID: 972560548}
-  MinuteHand: {fileID: 1516129234}
+  timeText: {fileID: 0}
+  hourHand: {fileID: 0}
+  minuteHand: {fileID: 0}
 --- !u!1 &1388214806
 GameObject:
   m_ObjectHideFlags: 0
@@ -26708,6 +26766,10 @@ MonoBehaviour:
   m_Color: {r: 0.41176474, g: 0.6666667, b: 0.43137258, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -37727,9 +37789,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c045d0d53720b47b548160870947f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 551806850}
-  ScaleToScene:
-  - {fileID: 1475167978}
+  defaultSize: 5
+  environmentCamera: {fileID: 0}
+  scaleToScene: []
 --- !u!1 &1578020738
 GameObject:
   m_ObjectHideFlags: 0
@@ -38038,6 +38100,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -38361,6 +38424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784f0d00995841045b1b6f4b3e41f230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuInput: {fileID: 0}
+  submitInput: {fileID: 0}
+  cancelInput: {fileID: 0}
   paused: 0
   playState: 0
   Score: {fileID: 11400000, guid: 022a872ca05120346a5ca87b49dd8af7, type: 2}
@@ -38372,8 +38438,12 @@ MonoBehaviour:
   HUD: {fileID: 1971662234}
   End: {fileID: 87630170}
   Community: {fileID: 384965588}
-  OpenPauseMenu: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
-  ClosePauseMenu: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  OpenPauseMenuAsset:
+    assetBundleName: 
+    assetName: 
+  ClosePauseMenuAsset:
+    assetBundleName: 
+    assetName: 
   Fader: {fileID: 1594107216}
   fadeSpeed: 2.5
 --- !u!114 &1677947746
@@ -38544,8 +38614,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!1 &1678720167
 GameObject:
   m_ObjectHideFlags: 0
@@ -39069,8 +39143,12 @@ MonoBehaviour:
   Arrow: {fileID: 831576776}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: -1, y: 1, z: 1}
-  ExpandSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ContractSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
+  ExpandSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ContractSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &1701632187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40364,8 +40442,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e1bc16c4dde5d74a8cb826f38c6d7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoverSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ClickSound: {fileID: 11400000, guid: 1c5b867c72925ec459049a0e23647d88, type: 2}
+  HoverSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ClickSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!114 &1901718769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40880,8 +40962,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 568985353}
   outline: {fileID: 1253705636}
-  collider: {fileID: 1939356992}
+  physicsBody: {fileID: 0}
+  outlineCollider: {fileID: 0}
   Width: 0.04
+  emissionLine: {fileID: 0}
 --- !u!1 &1949398819
 GameObject:
   m_ObjectHideFlags: 0
@@ -41076,6 +41160,10 @@ MonoBehaviour:
   m_Color: {r: 0.735849, g: 0.3019758, b: 0.3019758, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
@@ -41332,6 +41420,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 871757769
@@ -41870,8 +41959,12 @@ MonoBehaviour:
   Arrow: {fileID: 957407945}
   startScale: {x: 1, y: 1, z: 1}
   endScale: {x: -1, y: 1, z: 1}
-  ExpandSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
-  ContractSound: {fileID: 11400000, guid: 56b879397c6becb41903b71172b6aa42, type: 2}
+  ExpandSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ContractSoundAsset:
+    assetBundleName: 
+    assetName: 
 --- !u!1 &2056539542
 GameObject:
   m_ObjectHideFlags: 0
@@ -41902,15 +41995,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc94b8929680f449ab4f0729fab105f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputThrust: {x: 0, y: 0, z: 0}
-  inputRotation: 0
-  HitSound: {fileID: 11400000, guid: 48444fb48272cd8408cd96d26cf6b3e4, type: 2}
-  DestroySound: {fileID: 11400000, guid: 66b603d758db01440a27cc92bbcc7966, type: 2}
-  WarpSound: {fileID: 11400000, guid: 6f6a825274248c04ea1e3391787a4409, type: 2}
-  GravelHitSound: {fileID: 0}
-  EngineSound: {fileID: 11400000, guid: b982a127501898b4fa4778acbe1fad1d, type: 2}
-  AlarmSound: {fileID: 11400000, guid: 18043b90ac2ad074d932b98bfd8f8c5c, type: 2}
-  ScrapingSound: {fileID: 11400000, guid: d8bea201fdf45774eb4d0667932dd5e5, type: 2}
+  HitSoundAsset:
+    assetBundleName: 
+    assetName: 
+  DestroySoundAsset:
+    assetBundleName: 
+    assetName: 
+  WarpSoundAsset:
+    assetBundleName: 
+    assetName: 
+  GravelHitSoundAsset:
+    assetBundleName: 
+    assetName: 
+  EngineSoundAsset:
+    assetBundleName: 
+    assetName: 
+  AlarmSoundAsset:
+    assetBundleName: 
+    assetName: 
+  ScrapingSoundAsset:
+    assetBundleName: 
+    assetName: 
   DamageFromVelocity:
     serializedVersion: 2
     m_Curve:
@@ -41936,20 +42041,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   DistanceTravelled: {fileID: 11400000, guid: f7d4712ace20601469783014d2ab800f, type: 2}
-  Firepoint: {fileID: 0}
-  FireCooldown: 0.1375
-  WeaponProjectile:
-    Template: {fileID: 114404358654912924, guid: 409b4e9b7f4c0c749bdb4ef57f5e05b4, type: 3}
-    Reuse: 1
-    PrewarmAmount: 20
-  ShootSound: {fileID: 11400000, guid: 21ed7a3448ae7fc458db89e03b4a9465, type: 2}
-  RocketCooldown: 2
-  RocketCooldownCurrent: 2
-  RocketProjectile:
-    Template: {fileID: 0}
-    Reuse: 1
-    PrewarmAmount: 20
-  RocketSound: {fileID: 0}
   MovementSpeed: 1800
   RotationSpeed: 60
   border: 0.15
@@ -42212,6 +42303,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -42229,8 +42321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc109a6775c3b434095622a4e330bcb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: {fileID: 11400000, guid: 3e977689c193bfc469a5ec97cc2807fe, type: 2}
-  InterpolationSpeed: 20
+  valueSource: {fileID: 0}
+  interpolationSpeed: 10
 --- !u!114 &2095079631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42370,6 +42462,10 @@ MonoBehaviour:
   m_Color: {r: 0.24470451, g: 0.3679245, b: 0.28577784, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
   MinYMax: 1
   Points:
   - Time: 0
