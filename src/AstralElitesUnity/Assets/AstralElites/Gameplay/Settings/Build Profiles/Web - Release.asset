@@ -83,8 +83,20 @@ MonoBehaviour:
     rid: 7783882741763276989
   m_ActivePlatformGuid: 
   m_AdditionalPlatformBuildSettings: []
-  m_OverrideGlobalSceneList: 0
-  m_Scenes: []
+  m_OverrideGlobalSceneList: 1
+  m_Scenes:
+  - m_enabled: 0
+    m_path: Assets/AstralElites/Gameplay/Scenes/Splashscreen.unity
+    m_guid: e79a03e11a3eef8489d4fab58e599bd8
+  - m_enabled: 1
+    m_path: Assets/AstralElites/Gameplay/Scenes/DefaultEnvironment.unity
+    m_guid: bff415b22a630fc45a59cfe79efc39e7
+  - m_enabled: 1
+    m_path: Assets/AstralElites/Gameplay/Scenes/Interface.unity
+    m_guid: 5d818f0f9d059344bbe89aeb1267a62d
+  - m_enabled: 1
+    m_path: Assets/AstralElites/Gameplay/Scenes/Background.unity
+    m_guid: 4223876cfcae0cf4886d810ed9486423
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
@@ -132,8 +144,8 @@ MonoBehaviour:
     - line: '|   m_VirtualRealitySplashScreen: {instanceID: 0}'
     - line: '|   defaultScreenWidth: 1024'
     - line: '|   defaultScreenHeight: 768'
-    - line: '|   defaultScreenWidthWeb: 960'
-    - line: '|   defaultScreenHeightWeb: 600'
+    - line: '|   defaultScreenWidthWeb: 1920'
+    - line: '|   defaultScreenHeightWeb: 1080'
     - line: '|   m_StereoRenderingPath: 0'
     - line: '|   m_ActiveColorSpace: 0'
     - line: '|   unsupportedMSAAFallback: 0'

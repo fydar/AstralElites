@@ -29,13 +29,23 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+src/AstralElitesUnity/[Ll]ibrary/
+src/AstralElitesUnity/UserSettings/
+src/AstralElitesUnity/Logs/
+src/AstralElitesUnity/Assets/AssetStoreTools*
+src/AstralElitesUnity/Assets/Resources/PerformanceTestRunInfo.json
+src/AstralElitesUnity/Assets/Resources/PerformanceTestRunInfo.json.meta
+src/AstralElitesUnity/Assets/Resources/PerformanceTestRunSettings.json
+src/AstralElitesUnity/Assets/Resources/PerformanceTestRunSettings.json.meta
+src/AstralElitesUnity/Assets/Resources.meta
 src/AstralElitesUnity/*.sln
 src/AstralElitesUnity/*.csproj
-src/AstralElitesUnity/[Ll]ibrary/
-src/AstralElitesUnity/Assets/AssetStoreTools*
+src/AstralElitesUnity/*.slnx
+src/AstralElitesUnity/.vsconfig
+!src/AstralElitesUnity/*.*.meta
+
+# Files that are licensed and can't be shared via Source Control.
 **/Licensed/**.*
-!*.*.meta
-src/AstralElitesUnity/UserSettings
 
 # Builds
 *.apk
@@ -56,6 +66,3 @@ Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
 Project/Library/EditorInstance.json
 *.stamp
-src/AstralElitesUnity/Logs
-src/AstralElitesUnity/*.slnx
-src/AstralElitesUnity/.vsconfig
