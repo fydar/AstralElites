@@ -44,6 +44,7 @@ MonoBehaviour:
   - System.DateTimeOffset
   - System.DateTimeParse
   - System.Dynamic
+  - System.Linq
   - System.Security
   - System.TimeZoneInfo
   - System.Xml

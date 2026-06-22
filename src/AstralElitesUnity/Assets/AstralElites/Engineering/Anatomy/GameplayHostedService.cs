@@ -2,7 +2,7 @@ using HuskyUnity.Engineering.Bootstrap;
 using HuskyUnity.Engineering.SceneManagement;
 using HuskyUnity.Engineering.SceneManagement.BootFlow;
 using HuskyUnity.Engineering.SceneOwnership;
-using System.Linq;
+using System;
 using UnityEngine.SceneManagement;
 
 namespace HuskyUnity.Gameplay.Anatomy
@@ -50,7 +50,7 @@ namespace HuskyUnity.Gameplay.Anatomy
 
         public void Execute(Scene bootScene)
         {
-            if (host.ExecutionContext.CommandLineArguments.Contains("background"))
+            if (Array.IndexOf(host.ExecutionContext.CommandLineArguments, "background") >= 0)
             {
                 AudioManager.DisableAudio = true;
                 CursorManager.DisableCustomCursor = true;
