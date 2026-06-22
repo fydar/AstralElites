@@ -4006,6 +4006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuInput: {fileID: -2147112332621384403, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
+  submitInput: {fileID: 392368643174621059, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
+  cancelInput: {fileID: 7727032971491509709, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}
   paused: 0
   playState: 0
   Score: {fileID: 11400000, guid: 022a872ca05120346a5ca87b49dd8af7, type: 2}

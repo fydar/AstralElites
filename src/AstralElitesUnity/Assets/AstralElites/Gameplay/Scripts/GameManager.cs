@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [SerializeField] private InputActionReference menuInput;
+    [SerializeField] private InputActionReference submitInput;
+    [SerializeField] private InputActionReference cancelInput;
 
 
     public bool paused = false;
@@ -123,6 +125,21 @@ public class GameManager : MonoBehaviour
             }
 
             GameDuration += Time.deltaTime;
+        }
+
+        bool isSubmitting = submitInput != null && submitInput.action.WasPressedThisFrame();
+        bool isCancelling = cancelInput != null && cancelInput.action.WasPressedThisFrame();
+        
+        if (isSubmitting || isCancelling)
+        {
+            if (paused)
+            {
+                UI_Unpause();
+            }
+            else if (playState == PlayState.Ended)
+            {
+                StartGame();
+            }
         }
 
         interpolator.Update(Time.unscaledDeltaTime);
