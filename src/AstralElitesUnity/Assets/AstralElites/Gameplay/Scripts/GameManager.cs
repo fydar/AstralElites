@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
             if (menuInput.action.WasPressedThisFrame())
             {
                 UI_TogglePause();
+                return;
             }
 
             GameDuration += Time.deltaTime;

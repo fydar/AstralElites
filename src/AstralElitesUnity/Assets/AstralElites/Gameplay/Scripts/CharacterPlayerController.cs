@@ -151,6 +151,12 @@ public class CharacterPlayerController : MonoBehaviour
     {
         switch (CurrentInputMode)
         {
+            case InputMode.Gamepad:
+                if (Gamepad.current == null)
+                {
+                    CurrentInputMode = InputMode.None;
+                }
+                break;
             case InputMode.Mouse:
                 if (Mouse.current == null)
                 {
@@ -174,8 +180,10 @@ public class CharacterPlayerController : MonoBehaviour
 
     private void InputChangeToHotDevices(Vector2 move, Vector2 look)
     {
-        // Check Gamepad
-        if (move.sqrMagnitude > 0.01f || look.sqrMagnitude > 0.01f)
+        // Check Gamepad - analog sticks or any button press (covers Android Chrome gamepads
+        // where the device defaults to Touch but a connected gamepad should take priority)
+        if (move.sqrMagnitude > 0.01f || look.sqrMagnitude > 0.01f
+            || (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame))
         {
             CurrentInputMode = InputMode.Gamepad;
             return;
