@@ -12,6 +12,10 @@ public class SfxGroupEditor : Editor
     public static bool OpenAsset(EntityId entityId, int line)
     {
         var asset = EditorUtility.EntityIdToObject(entityId);
+        if (asset == null)
+        {
+            return false;
+        }
 
         if (asset is SfxGroup group)
         {
