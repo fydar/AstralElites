@@ -3,7 +3,7 @@
 Astral Elites
 </h1>
 
-[![Play now button](https://img.shields.io/badge/▶%20Play%20Now-b342f5.svg?logo=play)](https://fydar.dev/play/astralelites) [![Unity Version: 6.0.23f1f1](https://img.shields.io/badge/Made%20with%20Unity-6.0.23f1f1-333333.svg?logo=unity)](https://unity.com/releases/editor/whats-new/6000.0.23f1)
+[![Play now button](https://img.shields.io/badge/▶%20Play%20Now-b342f5.svg?logo=play)](https://fydar.dev/play/astralelites) [![Unity Version: 6.0.5f1f1](https://img.shields.io/badge/Made%20with%20Unity-6.0.5f1f1-333333.svg?logo=unity)](https://unity.com/releases/editor/whats-new/6000.0.5f1)
 
 Modern take on the game _'Asteroids'_ made in **Unity**.
 

@@ -24,7 +24,7 @@ public class ScreenEffect : MonoBehaviour
 
         if (BloomRenderFeature.Instance != null)
         {
-            BloomRenderFeature.Instance.IntensityMultiplier = Mathf.Clamp(Mathf.Abs(Spring.Value), 0, 6);
+            BloomRenderFeature.Instance.IntensityMultiplier = Mathf.Clamp(Mathf.Abs(Spring.Value), 0, 1);
         }
     }
 
