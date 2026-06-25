@@ -4,14 +4,15 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
+using Object = UnityEngine.Object;
+
 public static class BunnyLoader
 {
-    // Moved caches to the non-generic class to ensure a single, global state
-    internal static readonly Dictionary<string, Dictionary<string, UnityEngine.Object>> Cache =
-        new Dictionary<string, Dictionary<string, UnityEngine.Object>>(StringComparer.OrdinalIgnoreCase);
+    internal static readonly Dictionary<string, Dictionary<string, Object>> Cache =
+        new(StringComparer.OrdinalIgnoreCase);
 
     internal static readonly Dictionary<string, DownloadState> ActiveDownloads =
-        new Dictionary<string, DownloadState>(StringComparer.OrdinalIgnoreCase);
+        new(StringComparer.OrdinalIgnoreCase);
 
     internal class DownloadState
     {

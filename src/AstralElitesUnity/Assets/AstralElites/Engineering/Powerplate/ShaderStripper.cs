@@ -25,10 +25,16 @@ public class ShaderStripper : IPreprocessShaders, IPreprocessComputeShaders
     {
         if (shader.name == InternalGuiShader) return;
 
+        // Never strip first-party shaders regardless of variant collection contents.
+        if (shader.name.StartsWith("Hidden/AstralElites/")) return;
+
+        if (shader.name.Contains("Blit")) return;
+
         if (AbsoluteBlacklist.Contains(shader.name))
         {
             shader.hideFlags |= HideFlags.DontSaveInBuild;
             data.Clear();
+            Debug.Log($"[Stripper] Shader {shader.name} fully stripped.");
             return;
         }
 
@@ -51,6 +57,7 @@ public class ShaderStripper : IPreprocessShaders, IPreprocessComputeShaders
             if (!_collection.Contains(variant))
             {
                 data.RemoveAt(i);
+                Debug.Log($"[Stripper] Removed variant: {shader.name} - {snippet.passType} - {string.Join(", ", variant.keywords)}");
             }
         }
     }

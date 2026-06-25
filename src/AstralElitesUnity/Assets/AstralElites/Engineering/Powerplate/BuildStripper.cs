@@ -47,6 +47,10 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
                 // ClearOutTexture(postProcessingData.textures.smaaAreaTex);
                 // ClearOutTexture(postProcessingData.textures.smaaSearchTex);
 
+                if (postProcessingData == null)
+                {
+                    return;
+                }
                 postProcessingData.textures.blueNoise16LTex = Array.Empty<Texture2D>();
                 postProcessingData.textures.filmGrainTex = Array.Empty<Texture2D>();
                 postProcessingData.textures.smaaSearchTex = null;

@@ -38,6 +38,8 @@ src/AstralElitesUnity/Assets/Resources/PerformanceTestRunInfo.json.meta
 src/AstralElitesUnity/Assets/Resources/PerformanceTestRunSettings.json
 src/AstralElitesUnity/Assets/Resources/PerformanceTestRunSettings.json.meta
 src/AstralElitesUnity/Assets/Resources.meta
+src/AstralElitesUnity/Data/Plugins/lib_burst_generated.wasm
+src/AstralElitesUnity/Data/Plugins/lib_burst_generated.cpp
 src/AstralElitesUnity/*.sln
 src/AstralElitesUnity/*.csproj
 src/AstralElitesUnity/*.slnx

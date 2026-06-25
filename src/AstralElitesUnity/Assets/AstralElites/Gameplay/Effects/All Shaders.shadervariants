@@ -34,19 +34,19 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 0
-  - first: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+  - first: {fileID: 4800000, guid: 12dc59547ea167a4ab435097dd0f9add, type: 3}
     second:
       variants:
       - keywords: 
         passType: 0
-      - keywords: _BLOOM_LQ _CHROMATIC_ABERRATION
-        passType: 0
-  - first: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
-    second:
-      variants:
-      - keywords: 
+      - keywords: DISABLE_TEXTURE2D_X_ARRAY
         passType: 0
   - first: {fileID: 4800000, guid: 4283a0177910350449fb95480f902643, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 4fc3d726b015de046aafb497a0b2077e, type: 3}
     second:
       variants:
       - keywords: 
