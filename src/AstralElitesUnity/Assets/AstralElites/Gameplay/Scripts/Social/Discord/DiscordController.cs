@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 #if UNITY_STANDALONE || UNITY_EDITOR
 using Discord.Sdk;

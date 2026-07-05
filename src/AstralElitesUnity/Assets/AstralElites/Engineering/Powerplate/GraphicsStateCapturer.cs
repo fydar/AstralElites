@@ -1,5 +1,6 @@
 #if DEBUG
 using System;
+using System.Collections;
 using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -40,7 +41,7 @@ public class GraphicsStateCapturer : MonoBehaviour
         StartCoroutine(ExportCoroutine());
     }
 
-    private System.Collections.IEnumerator ExportCoroutine()
+    private IEnumerator ExportCoroutine()
     {
         // Yield two frames so the EndCapture flush can complete before we read.
         yield return null;

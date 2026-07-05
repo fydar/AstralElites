@@ -1,4 +1,4 @@
-﻿public interface IInterpolator
+public interface IInterpolator
 {
     public float Value { get; set; }
     public float TargetValue { set; }

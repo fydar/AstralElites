@@ -1,4 +1,4 @@
-﻿using Fydar.Bunny;
+using Fydar.Bunny;
 using UnityEngine;
 
 [CreateAssetMenu]
