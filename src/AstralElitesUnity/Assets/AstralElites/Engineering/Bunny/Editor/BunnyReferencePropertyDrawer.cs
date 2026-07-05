@@ -1,85 +1,110 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(BunnyReference<>))]
-public class BunnyReferencePropertyDrawer : PropertyDrawer
+namespace Fydar.Bunny.Editor
 {
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    [CustomPropertyDrawer(typeof(BunnyReference<>))]
+    public class BunnyReferencePropertyDrawer : PropertyDrawer
     {
-        EditorGUI.BeginProperty(position, label, property);
-
-        SerializedProperty bundleProp = property.FindPropertyRelative("assetBundleName");
-        SerializedProperty nameProp = property.FindPropertyRelative("assetName");
-
-        Type targetObjectType = GetTargetType();
-
-        UnityEngine.Object currentObject = null;
-        if (!string.IsNullOrEmpty(bundleProp.stringValue) && !string.IsNullOrEmpty(nameProp.stringValue))
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            string[] paths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleProp.stringValue, nameProp.stringValue);
-            if (paths.Length > 0)
-            {
-                currentObject = AssetDatabase.LoadAssetAtPath(paths[0], targetObjectType);
-            }
+            return EditorGUIUtility.singleLineHeight * 2 + EditorGUIUtility.standardVerticalSpacing;
         }
 
-        EditorGUI.BeginChangeCheck();
-        UnityEngine.Object newObject = EditorGUI.ObjectField(position, label, currentObject, targetObjectType, false);
-
-        if (EditorGUI.EndChangeCheck())
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (newObject == null)
+            EditorGUI.BeginProperty(position, label, property);
+
+            SerializedProperty bundleProp = property.FindPropertyRelative("assetBundleName");
+            SerializedProperty nameProp = property.FindPropertyRelative("assetName");
+
+            Type targetType = GetTargetType();
+
+            float lineHeight = EditorGUIUtility.singleLineHeight;
+            float spacing = EditorGUIUtility.standardVerticalSpacing;
+
+            Rect bundleRect = new Rect(position.x, position.y, position.width, lineHeight);
+            Rect assetRect = new Rect(position.x, position.y + lineHeight + spacing, position.width, lineHeight);
+
+            // Bundle Dropdown
+            string[] allBundleNames = AssetDatabase.GetAllAssetBundleNames();
+            string currentBundle = bundleProp.stringValue;
+
+            int bundleIndex = Array.IndexOf(allBundleNames, currentBundle);
+            string[] bundleOptions = new string[allBundleNames.Length + 1];
+            bundleOptions[0] = "(None)";
+            allBundleNames.CopyTo(bundleOptions, 1);
+
+            Rect bundleControlRect = EditorGUI.PrefixLabel(bundleRect, label);
+
+            EditorGUI.BeginChangeCheck();
+            int newBundleIndex = EditorGUI.Popup(bundleControlRect, bundleIndex + 1, bundleOptions);
+            if (EditorGUI.EndChangeCheck())
             {
-                bundleProp.stringValue = string.Empty;
+                bundleProp.stringValue = newBundleIndex == 0 ? string.Empty : bundleOptions[newBundleIndex];
                 nameProp.stringValue = string.Empty;
             }
-            else
+
+            // Asset Dropdown
+            string selectedBundle = bundleProp.stringValue;
+            using (new EditorGUI.DisabledScope(string.IsNullOrEmpty(selectedBundle)))
             {
-                string assetPath = AssetDatabase.GetAssetPath(newObject);
-                var importer = AssetImporter.GetAtPath(assetPath);
-
-                if (importer != null)
+                var assetNames = new List<string>();
+                if (!string.IsNullOrEmpty(selectedBundle))
                 {
-                    bundleProp.stringValue = importer.assetBundleName;
-                    nameProp.stringValue = newObject.name;
-
-                    if (string.IsNullOrEmpty(importer.assetBundleName))
+                    foreach (string path in AssetDatabase.GetAssetPathsFromAssetBundle(selectedBundle))
                     {
-                        Debug.LogWarning($"The asset '{newObject.name}' is not currently assigned to any Asset Bundle.");
+                        var asset = AssetDatabase.LoadAssetAtPath(path, targetType);
+                        if (asset != null)
+                            assetNames.Add(asset.name);
                     }
                 }
+
+                string currentAsset = nameProp.stringValue;
+                int assetIndex = assetNames.IndexOf(currentAsset);
+
+                string[] assetOptions = new string[assetNames.Count + 1];
+                assetOptions[0] = "(None)";
+                assetNames.CopyTo(assetOptions, 1);
+
+                Rect assetControlRect = new Rect(
+                    assetRect.x + EditorGUIUtility.labelWidth,
+                    assetRect.y,
+                    assetRect.width - EditorGUIUtility.labelWidth,
+                    assetRect.height
+                );
+
+                EditorGUI.BeginChangeCheck();
+                int newAssetIndex = EditorGUI.Popup(assetControlRect, assetIndex + 1, assetOptions);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    nameProp.stringValue = newAssetIndex == 0 ? string.Empty : assetOptions[newAssetIndex];
+                }
             }
+
+            EditorGUI.EndProperty();
         }
 
-        EditorGUI.EndProperty();
-    }
-
-    /// <summary>
-    /// Safely extracts the type 'T' from the generic struct, accounting for Arrays and Lists.
-    /// </summary>
-    private Type GetTargetType()
-    {
-        Type type = fieldInfo.FieldType;
-
-        // Handle arrays and lists
-        if (type.IsArray)
+        /// <summary>
+        /// Safely extracts the type 'T' from the generic struct, accounting for Arrays and Lists.
+        /// </summary>
+        private Type GetTargetType()
         {
-            type = type.GetElementType();
-        }
-        else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(System.Collections.Generic.List<>))
-        {
-            type = type.GetGenericArguments()[0];
-        }
+            Type type = fieldInfo.FieldType;
 
-        // Extract T from BunnyReference<T>
-        if (type != null && type.IsGenericType)
-        {
-            return type.GetGenericArguments()[0];
-        }
+            if (type.IsArray)
+                type = type.GetElementType();
+            else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(System.Collections.Generic.List<>))
+                type = type.GetGenericArguments()[0];
 
-        return typeof(UnityEngine.Object);
+            if (type != null && type.IsGenericType)
+                return type.GetGenericArguments()[0];
+
+            return typeof(UnityEngine.Object);
+        }
     }
 }
 #endif

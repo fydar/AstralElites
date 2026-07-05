@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fydar.Bunny;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Accordion : MonoBehaviour

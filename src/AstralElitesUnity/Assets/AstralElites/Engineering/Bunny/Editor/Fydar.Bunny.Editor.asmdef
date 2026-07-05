@@ -1,8 +1,12 @@
 {
-    "name": "Bunny.Runtime",
+    "name": "Fydar.Bunny.Editor",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "GUID:08941f563483d544fa905962bce6d695"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

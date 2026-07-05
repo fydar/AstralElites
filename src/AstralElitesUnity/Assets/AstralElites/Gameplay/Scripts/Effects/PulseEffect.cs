@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fydar.Bunny;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PulseEffect : MonoBehaviour, ISerializationCallbackReceiver

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fydar.Bunny;
+using UnityEngine;
 
 public class FirePoint : MonoBehaviour
 {

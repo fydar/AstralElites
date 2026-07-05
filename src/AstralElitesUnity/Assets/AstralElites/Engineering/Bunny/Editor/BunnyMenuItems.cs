@@ -1,24 +1,60 @@
 ﻿#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 
-public class BunnyMenuItems
+namespace Fydar.Bunny.Editor
 {
-    [MenuItem("Assets/Build WebGL AssetBundles")]
-    public static void BuildAllAssetBundles()
+    public class BunnyMenuItems
     {
-        string assetBundleDirectory = "Assets/StreamingAssets/AssetBundles";
+        private const string useAssetDatabaseMenuPath = "Bunny/Use AssetDatabase in Editor";
 
-        if (!Directory.Exists(assetBundleDirectory))
+        [MenuItem(useAssetDatabaseMenuPath)]
+        public static void ToggleUseAssetDatabase()
         {
-            Directory.CreateDirectory(assetBundleDirectory);
+            bool current = EditorPrefs.GetBool(BunnyEditorLoader.useAssetDatabasePrefKey, true);
+            EditorPrefs.SetBool(BunnyEditorLoader.useAssetDatabasePrefKey, !current);
         }
 
-        BuildPipeline.BuildAssetBundles(
-            assetBundleDirectory,
-            BuildAssetBundleOptions.ChunkBasedCompression | BuildAssetBundleOptions.AssetBundleStripUnityVersion,
-            BuildTarget.WebGL
-        );
+        [MenuItem(useAssetDatabaseMenuPath, isValidateFunction: true)]
+        public static bool ToggleUseAssetDatabaseValidate()
+        {
+            Menu.SetChecked(useAssetDatabaseMenuPath, EditorPrefs.GetBool(BunnyEditorLoader.useAssetDatabasePrefKey, true));
+            return true;
+        }
+
+        [MenuItem("Assets/Build WebGL AssetBundles")]
+        public static void BuildAllAssetBundles()
+        {
+            string assetBundleDirectory = "Assets/StreamingAssets/AssetBundles";
+
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+
+            string[] allBundleNames = AssetDatabase.GetAllAssetBundleNames();
+            var builds = new List<AssetBundleBuild>();
+            foreach (string bundleName in allBundleNames)
+            {
+                if (string.Equals(bundleName, "unifiedraytracing", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                builds.Add(new AssetBundleBuild
+                {
+                    assetBundleName = bundleName,
+                    assetNames = AssetDatabase.GetAssetPathsFromAssetBundle(bundleName),
+                });
+            }
+
+            BuildPipeline.BuildAssetBundles(
+                assetBundleDirectory,
+                builds.ToArray(),
+                BuildAssetBundleOptions.ChunkBasedCompression | BuildAssetBundleOptions.AssetBundleStripUnityVersion,
+                BuildTarget.WebGL
+            );
+        }
     }
 }
 #endif

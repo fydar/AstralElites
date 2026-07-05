@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Fydar.Bunny;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -91,46 +92,43 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator LoadAndPlaySfx(BunnyReference<SfxGroup> reference)
     {
-        var request = BunnyLoader.LoadAssetAsync(reference, BundleBasePath);
-        yield return request;
+        yield return BunnyLoader.LoadAssetAsync(reference, BundleBasePath, out var result);
 
-        if (request.asset != null)
+        if (result.Asset != null)
         {
-            PlayClip(request.asset);
+            PlayClip(result.Asset);
         }
         else
         {
-            Debug.LogError($"Failed to load SFX: {request.error}");
+            Debug.LogError($"Failed to load SFX: {result.Error}");
         }
     }
 
     private IEnumerator LoadAndPlayLoop(BunnyReference<LoopGroup> reference, EffectFader fader)
     {
-        var request = BunnyLoader.LoadAssetAsync(reference, BundleBasePath);
-        yield return request;
+        yield return BunnyLoader.LoadAssetAsync(reference, BundleBasePath, out var result);
 
-        if (request.asset != null)
+        if (result.Asset != null)
         {
-            PlayClip(request.asset, fader);
+            PlayClip(result.Asset, fader);
         }
         else
         {
-            Debug.LogError($"Failed to load Loop: {request.error}");
+            Debug.LogError($"Failed to load Loop: {result.Error}");
         }
     }
 
     private IEnumerator LoadAndPlayMusic(BunnyReference<MusicGroup> reference)
     {
-        var request = BunnyLoader.LoadAssetAsync(reference, BundleBasePath);
-        yield return request;
+        yield return BunnyLoader.LoadAssetAsync(reference, BundleBasePath, out var result);
 
-        if (request.asset != null)
+        if (result.Asset != null)
         {
-            PlayMusicClip(request.asset);
+            PlayMusicClip(result.Asset);
         }
         else
         {
-            Debug.LogError($"Failed to load Music: {request.error}");
+            Debug.LogError($"Failed to load Music: {result.Error}");
         }
     }
 

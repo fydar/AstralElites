@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fydar.Bunny;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class AsteroidTemplate : ScriptableObject
