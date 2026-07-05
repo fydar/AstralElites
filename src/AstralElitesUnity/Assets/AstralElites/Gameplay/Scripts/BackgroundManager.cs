@@ -60,21 +60,42 @@ public class BackgroundManager : MonoBehaviour
 
     private IEnumerator GameOverRoutine()
     {
-        var asteroidsToKill = AsteroidGenerator.instance.AsteroidPool.pool;
-        for (int i = asteroidsToKill.Count - 1; i >= 0; i--)
+        var waitForSecondsRealtime = new WaitForSecondsRealtime(0.1f);
+        var pool = AsteroidGenerator.instance.AsteroidPool.pool;
+
+        while (true)
         {
-            var asteroid = asteroidsToKill[i];
-            if (asteroid.isActiveAndEnabled)
+            bool poppedThisTick = false;
+
+            // Iterate backwards to find the last active asteroid
+            for (int i = pool.Count - 1; i >= 0; i--)
             {
-                asteroid.Kill(asteroid.transform.position, asteroid.GetComponent<Rigidbody2D>().linearVelocity.normalized, false);
-                yield return new WaitForSecondsRealtime(0.1f);
+                var asteroid = pool[i];
+                if (asteroid != null && asteroid.isActiveAndEnabled)
+                {
+                    asteroid.Kill(asteroid.transform.position, asteroid.GetComponent<Rigidbody2D>().linearVelocity.normalized, false);
+                    poppedThisTick = true;
+                    break;
+                }
+            }
+
+            // If we found and killed an asteroid, wait a tick before searching again
+            if (poppedThisTick)
+            {
+                yield return waitForSecondsRealtime;
+            }
+            else
+            {
+                // No active asteroids were found in the entire pool, so we are done
+                break;
             }
         }
-        yield return new WaitForSecondsRealtime(0.1f);
+
+        yield return waitForSecondsRealtime;
 
         playerPool.Flush();
 
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return waitForSecondsRealtime;
 
         CreateCharacter();
     }
