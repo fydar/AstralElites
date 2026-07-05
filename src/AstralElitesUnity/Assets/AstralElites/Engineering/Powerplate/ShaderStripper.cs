@@ -8,78 +8,51 @@ using UnityEngine.Rendering;
 
 public class ShaderStripper : IPreprocessShaders, IPreprocessComputeShaders
 {
-    private const string AssetPath = "Assets/AstralElites/Gameplay/Effects/All Shaders.shadervariants";
-    private const string InternalGuiShader = "Hidden/Internal-GUITexture";
+    private const string assetPath = "Assets/AstralElites/Gameplay/Effects/PrewarmShaders.graphicsstate";
 
-    private ShaderVariantCollection _collection;
-
-    private static readonly HashSet<string> AbsoluteBlacklist = new()
-    {
-        "VrsTexture",
-        "ProbeVolumeSamplingDebugPositionNormal"
-    };
+    private GraphicsStateCollection _collection;
 
     public int callbackOrder => 0;
 
     public void OnProcessShader(Shader shader, ShaderSnippetData snippet, IList<ShaderCompilerData> data)
     {
-        if (shader.name == InternalGuiShader) return;
-
-        // Never strip first-party shaders regardless of variant collection contents.
-        if (shader.name.StartsWith("Hidden/AstralElites/")) return;
-
-        if (shader.name.Contains("Blit")) return;
-
-        if (AbsoluteBlacklist.Contains(shader.name))
+        if (_collection == null)
         {
-            shader.hideFlags |= HideFlags.DontSaveInBuild;
-            data.Clear();
-            Debug.Log($"[Stripper] Shader {shader.name} fully stripped.");
-            return;
+            _collection = AssetDatabase.LoadAssetAtPath<GraphicsStateCollection>(assetPath);
         }
 
         if (_collection == null)
         {
-            _collection = AssetDatabase.LoadAssetAtPath<ShaderVariantCollection>(AssetPath);
+            return;
         }
-
-        if (_collection == null) return;
 
         for (int i = data.Count - 1; i >= 0; i--)
         {
-            var variant = new ShaderVariantCollection.ShaderVariant
-            {
-                shader = shader,
-                passType = snippet.passType,
-                keywords = GetKeywordArray(data[i].shaderKeywordSet)
-            };
+            var keywords = GetKeywordArray(shader, data[i].shaderKeywordSet);
 
-            if (!_collection.Contains(variant))
+            if (!_collection.ContainsVariant(shader, snippet.pass, keywords))
             {
                 data.RemoveAt(i);
-                Debug.Log($"[Stripper] Removed variant: {shader.name} - {snippet.passType} - {string.Join(", ", variant.keywords)}");
+                Debug.Log($"[Stripper] Removed variant: {shader.name} - {snippet.passType} - {string.Join(", ", keywords)}");
             }
         }
     }
 
     public void OnProcessComputeShader(ComputeShader shader, string kernelName, IList<ShaderCompilerData> data)
     {
-        if (AbsoluteBlacklist.Contains(shader.name))
-        {
-            shader.hideFlags |= HideFlags.DontSaveInBuild;
-            data.Clear();
-            Debug.Log($"[Stripper] Compute Shader {shader.name} fully stripped.");
-        }
+        shader.hideFlags |= HideFlags.DontSaveInBuild;
+        data.Clear();
+        Debug.Log($"[Stripper] Compute Shader {shader.name} fully stripped.");
     }
 
-    private string[] GetKeywordArray(ShaderKeywordSet keywordSet)
+    private LocalKeyword[] GetKeywordArray(Shader shader, ShaderKeywordSet keywordSet)
     {
         var keywords = keywordSet.GetShaderKeywords();
-        string[] keywordNames = new string[keywords.Length];
+        var keywordNames = new LocalKeyword[keywords.Length];
 
         for (int i = 0; i < keywords.Length; i++)
         {
-            keywordNames[i] = keywords[i].name;
+            keywordNames[i] = new LocalKeyword(shader, keywords[i].name);
         }
 
         return keywordNames;

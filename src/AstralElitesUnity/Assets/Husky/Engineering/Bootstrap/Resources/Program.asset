@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86726b8a525b82b428e87b1c71447e07, type: 3}
   m_Name: Program
   m_EditorClassIdentifier: 
+  graphicsStateCollection: {fileID: -6766982352335285333, guid: daa589fcce736294eb0be21252c21e94, type: 3}
