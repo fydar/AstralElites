@@ -1,38 +1,41 @@
 ManifestFileVersion: 0
-UnityVersion: 6000.3.6f1
-CRC: 1981571373
-Compression: LZ4HC
+UnityVersion: 6000.5.0f1
+CRC: 3035627997
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d9bea74c7bec094f314bda9599abd974
+    Hash: 280701a36fb2c4b607fd500d06b90abd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: f03b6d78799568b606631c229b935836
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: cb1af3f0a842b421a47908d3996847c1
 HashAppended: 0
 ClassTypes:
 - Class: 83
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 2126dc9f5bc9e8844bc4beb267998b3e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7d052a6220061e34aadf5ebacb39e3dd, type: 3}
 - Class: 115
   Script: {instanceID: 0}
-SerializeReferenceClassIdentifiers: []
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Vector2
 Assets:
-- Assets/AstralElites/Gameplay/Audio/Alarm/Alarm.asset
-- Assets/AstralElites/Gameplay/Audio/Metal Grinding/Scraping.asset
-- Assets/AstralElites/Gameplay/Audio/Impact/Impact High.asset
-- Assets/AstralElites/Gameplay/Audio/Whooshes/Hyperspace Enter.asset
-- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Metal Impact.asset
-- Assets/AstralElites/Gameplay/Audio/Impact/Impact Low.asset
-- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Broken Device.asset
-- Assets/AstralElites/Gameplay/Audio/Sci-Fi UI/Hover.asset
-- Assets/AstralElites/Gameplay/Audio/Impact/Impact Quiet.asset
 - Assets/AstralElites/Gameplay/Audio/Sci-Fi UI/Click.asset
-- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Light Repeating Blaster.asset
-- Assets/AstralElites/Gameplay/Audio/Impact/Impact Base.asset
 - Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Rifle.asset
+- Assets/AstralElites/Gameplay/Audio/Metal Grinding/Scraping.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Base.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Light Repeating Blaster.asset
+- Assets/AstralElites/Gameplay/Audio/Whooshes/Hyperspace Enter.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact High.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi UI/Hover.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Broken Device.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Low.asset
+- Assets/AstralElites/Gameplay/Audio/Alarm/Alarm.asset
+- Assets/AstralElites/Gameplay/Audio/Impact/Impact Quiet.asset
+- Assets/AstralElites/Gameplay/Audio/Sci-Fi DSP/Metal Impact.asset
 Dependencies: []

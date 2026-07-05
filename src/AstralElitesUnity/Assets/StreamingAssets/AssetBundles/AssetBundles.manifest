@@ -1,15 +1,12 @@
 ManifestFileVersion: 0
-UnityVersion: 6000.3.6f1
-CRC: 66673486
+UnityVersion: 6000.5.0f1
+CRC: 919103858
 HashAppended: 0
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: unifiedraytracing
-      Dependencies: {}
-    Info_1:
       Name: sfx.data
       Dependencies: {}
-    Info_2:
+    Info_1:
       Name: music.data
       Dependencies: {}
