@@ -22,7 +22,7 @@ MonoBehaviour:
     m_StripUnusedPostProcessingVariantsAndResources: 1
     m_StripUnusedVariants: 1
     m_StripScreenCoordOverrideVariants: 1
-    m_Strip2DUnusedVariants: 0
+    m_Strip2DUnusedVariants: 1
   m_ShaderVariantLogLevel: 0
   m_ExportShaderVariants: 1
   m_StripDebugVariants: 1
@@ -192,10 +192,10 @@ MonoBehaviour:
       type: {class: URPShaderStrippingSetting, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
-        m_StripUnusedPostProcessingVariantsAndResources: 0
+        m_StripUnusedPostProcessingVariantsAndResources: 1
         m_StripUnusedVariants: 1
         m_StripScreenCoordOverrideVariants: 1
-        m_Strip2DUnusedVariants: 0
+        m_Strip2DUnusedVariants: 1
     - rid: 8295406787692855346
       type: {class: UniversalRenderPipelineRuntimeShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
@@ -290,7 +290,7 @@ MonoBehaviour:
       type: {class: URPTerrainShaderSetting, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
-        m_IncludeTerrainShaders: 1
+        m_IncludeTerrainShaders: 0
     - rid: 8295406787692855358
       type: {class: UniversalRenderPipelineDebugShaders, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:

@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithReport
@@ -37,17 +36,6 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
             {
                 var postProcessingData = (PostProcessData)typeof(Renderer2DData).GetField("m_PostProcessData", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(rendererData);
 
-                // foreach (var texture in postProcessingData.textures.blueNoise16LTex)
-                // {
-                //     ClearOutTexture(texture);
-                // }
-                // foreach (var texture in postProcessingData.textures.filmGrainTex)
-                // {
-                //     ClearOutTexture(texture);
-                // }
-                // ClearOutTexture(postProcessingData.textures.smaaAreaTex);
-                // ClearOutTexture(postProcessingData.textures.smaaSearchTex);
-
                 if (postProcessingData == null)
                 {
                     return;
@@ -63,42 +51,29 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
             }
         }
 
-        Type filmGrainResourcesType = null;
-        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            filmGrainResourcesType = assembly.GetType("UnityEngine.Rendering.Universal.UniversalRenderPipelineFilmGrainResources");
-            if (filmGrainResourcesType != null)
-            {
-                break;
-            }
-        }
-        if (filmGrainResourcesType != null)
-        {
-            var texturesField = filmGrainResourcesType.GetField("m_Textures", BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (var instance in Resources.FindObjectsOfTypeAll(filmGrainResourcesType))
-            {
-                texturesField?.SetValue(instance, Array.Empty<Texture2D>());
-                EditorUtility.SetDirty(instance);
-                Debug.Log($"[BuildStripper] Stripped film grain textures from {instance.name}");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("[BuildStripper] UniversalRenderPipelineFilmGrainResources type not found");
-        }
-
-        // foreach (string textureGuid in AssetDatabase.FindAssets("t:Texture"))
-        // {
-        //     string assetPath = AssetDatabase.GUIDToAssetPath(textureGuid);
-        //     if (assetPath.Contains("/Runtime/Debugging/"))
-        //     {
-        //         var assets = AssetDatabase.LoadAllAssetsAtPath(assetPath);
-        //         foreach (var asset in assets)
-        //         {
-        //             asset.hideFlags |= HideFlags.DontSaveInBuild;
-        //         }
-        //     }
-        // }
+        StripResourceType("UnityEngine.Rendering.Universal.UniversalRenderPipelineFilmGrainResources", "m_Textures");
+        StripResourceType("UnityEngine.Rendering.UnifiedRayTracing.RayTracingRenderPipelineResources",
+            "m_GeometryPoolKernels", "m_CopyBuffer", "m_CopyPositions", "m_BitHistogram",
+            "m_BlockReducePart", "m_BlockScan", "m_BuildHlbvh", "m_RestructureBvh", "m_Scatter");
+        StripResourceType("UnityEngine.PathTracing.Core.WorldRenderPipelineResources",
+            "_blitCubemap", "_blitGrayScaleCookie", "_setAlphaChannelShader",
+            "_environmentImportanceSamplingBuild", "_skyBoxMesh", "_sixFaceSkyBoxMesh",
+            "_buildLightGridShader", "_solidColorShader");
+        StripResourceType("UnityEngine.Rendering.GPUResidentDrawerResources",
+            "m_InstanceDataBufferCopyKernels", "m_InstanceDataBufferUploadKernels",
+            "m_TransformUpdaterKernels", "m_WindDataUpdaterKernels",
+            "m_OccluderDepthPyramidKernels", "m_InstanceOcclusionCullingKernels",
+            "m_OcclusionCullingDebugKernels", "m_DebugOcclusionTestPS", "m_DebugOccluderPS");
+        StripResourceType("UnityEngine.Rendering.STP+RuntimeResources",
+            "m_setupCS", "m_preTaaCS", "m_taaCS");
+        StripResourceType("UnityEngine.Rendering.Universal.ScreenSpaceAmbientOcclusionBlueNoiseResources",
+            "m_BlueNoise256Textures");
+        StripResourceType("UnityEngine.Rendering.Universal.ScreenSpaceReflectionPersistentResources",
+            "m_Shader", "m_BlitShader");
+        StripResourceType("UnityEngine.Rendering.VrsRenderPipelineRuntimeResources",
+            "m_TextureComputeShader", "m_VisualizationShader");
+        StripResourceType("UnityEngine.Rendering.Universal.UniversalRenderPipelineRuntimeXRResources",
+            "m_xrOcclusionMeshPS", "m_xrMirrorViewPS", "m_xrMotionVector");
 
         foreach (var texture in Resources.FindObjectsOfTypeAll(typeof(Texture)))
         {
@@ -107,48 +82,88 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
                 texture.hideFlags |= HideFlags.DontSaveInBuild;
                 ClearOutTexture(texture);
             }
-            // if (texture.name == "FalloffLookupTexture")
-            // {
-            //     texture.hideFlags |= HideFlags.DontSaveInBuild;
-            //     ClearOutTexture(texture);
-            // }
-            // if (texture.name == "NumbersDisplayTex")
-            // {
-            //     texture.hideFlags |= HideFlags.DontSaveInBuild;
-            //     ClearOutTexture(texture);
-            // }
+        }
+    }
+
+    private static void StripResourceType(string typeName, params string[] fieldNames)
+    {
+        Type resourceType = null;
+        foreach (var assembly in UnityEngine.Assemblies.CurrentAssemblies.GetLoadedAssemblies())
+        {
+            resourceType = assembly.GetType(typeName);
+            if (resourceType != null)
+            {
+                break;
+            }
         }
 
-        static void ClearOutTexture(UnityEngine.Object texture)
+        if (resourceType == null)
         {
-            if (texture == null)
+            Debug.LogWarning($"[BuildStripper] Type not found: {typeName}");
+            return;
+        }
+
+        var instances = Resources.FindObjectsOfTypeAll(resourceType);
+        if (instances.Length == 0)
+        {
+            return;
+        }
+
+        foreach (var instance in instances)
+        {
+            foreach (string fieldName in fieldNames)
             {
-                return;
-            }
-            try
-            {
-                if (texture is Texture2D texture2D)
+                var field = resourceType.GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (field == null)
                 {
-                    if (texture2D.isReadable)
-                    {
-                        _ = texture2D.Reinitialize(2, 2);
-                        texture2D.SetPixels32(new Color32[]
-                        {
-                            Color.clear,
-                            Color.clear,
-                            Color.clear,
-                            Color.clear
-                        });
-                        texture2D.Apply();
-                    }
+                    Debug.LogWarning($"[BuildStripper] Field not found: {typeName}.{fieldName}");
+                    continue;
                 }
 
-                EditorUtility.SetDirty(texture);
+                if (field.FieldType.IsArray)
+                {
+                    field.SetValue(instance, Array.CreateInstance(field.FieldType.GetElementType(), 0));
+                }
+                else
+                {
+                    field.SetValue(instance, null);
+                }
             }
-            catch (Exception exception)
+
+            EditorUtility.SetDirty(instance);
+            Debug.Log($"[BuildStripper] Stripped {typeName} from {instance.name}");
+        }
+    }
+
+    private static void ClearOutTexture(UnityEngine.Object texture)
+    {
+        if (texture == null)
+        {
+            return;
+        }
+        try
+        {
+            if (texture is Texture2D texture2D)
             {
-                Debug.Log(exception);
+                if (texture2D.isReadable)
+                {
+                    _ = texture2D.Reinitialize(2, 2);
+                    texture2D.SetPixels32(new Color32[]
+                    {
+                        Color.clear,
+                        Color.clear,
+                        Color.clear,
+                        Color.clear
+                    });
+                    texture2D.Apply();
+                }
             }
+
+            EditorUtility.SetDirty(texture);
+        }
+        catch (Exception exception)
+        {
+            Debug.Log(exception);
         }
     }
 }

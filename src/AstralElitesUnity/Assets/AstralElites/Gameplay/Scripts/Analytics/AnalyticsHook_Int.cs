@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 
-[Serializable]
 public class AnalyticsHook_Int
 {
     private readonly EventField<int> target;
