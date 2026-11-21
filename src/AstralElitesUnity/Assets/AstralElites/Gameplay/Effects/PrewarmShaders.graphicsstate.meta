@@ -8,9 +8,9 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 12391, guid: 0000000000000000e000000000000000, type: 0}
-  runtimePlatform: 7
-  graphicsDeviceType: 2
+  runtimePlatform: 17
+  graphicsDeviceType: 28
   version: 0
   qualityLevelName: Default
-  shaderVariantCount: 20
-  graphicsStateCount: 0
+  shaderVariantCount: 12
+  graphicsStateCount: 21

@@ -111,11 +111,13 @@ MonoBehaviour:
     m_DrawFillOptions: 7
     m_DrawContactType: 4
     m_DrawFilter: 0
+    m_DrawTarget: 0
     m_DrawThickness: 1
     m_DrawFillAlpha: 0.1
     m_DrawPointScale: 0.5
     m_DrawNormalScale: 0.01
     m_DrawForceScale: 0.01
+    m_DrawOrder: 0
     m_DrawColors:
       transformAxisX: {r: 0, g: 1, b: 1, a: 1}
       transformAxisY: {r: 0, g: 0.5019608, b: 0, a: 1}
@@ -373,7 +375,7 @@ MonoBehaviour:
   m_TransformChangeMode: 2
   m_ContactFilterMode: 0
   m_ContactFilterGroupMode: 0
-  m_MaximumWorlds: 128
+  m_InitialWorldCapacity: 128
   m_ConcurrentSimulations: 2
   m_LengthUnitsPerMeter: 1
   m_RenderingMode: 0

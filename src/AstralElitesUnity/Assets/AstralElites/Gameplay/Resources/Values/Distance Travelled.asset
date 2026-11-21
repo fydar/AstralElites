@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434cc6b13c99f194fb030c0436db7a0c, type: 3}
   m_Name: Distance Travelled
   m_EditorClassIdentifier: 
-  currentValue: 15.038671
+  currentValue: 37.53468

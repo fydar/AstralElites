@@ -48,6 +48,7 @@ MonoBehaviour:
     keywordDeclarationOverrides: []
     defines: []
     numInternalDefines: 0
+    compilerSettings: []
 --- !u!114 &-3750129946953735925
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -116,8 +117,7 @@ MonoBehaviour:
     - line: '|   productName: Astral Elites'
     - line: '|   defaultCursor: {instanceID: 0}'
     - line: '|   cursorHotspot: {x: 4, y: 4}'
-    - line: '|   m_SplashScreenBackgroundColor: {r: 0.07058824, g: 0.09019608, b:
-        0.101960786, a: 1}'
+    - line: '|   m_SplashScreenBackgroundColor: {r: 0.07058824, g: 0.09019608, b: 0.101960786, a: 1}'
     - line: '|   m_ShowUnitySplashScreen: 0'
     - line: '|   m_ShowUnitySplashLogo: 0'
     - line: '|   m_SplashScreenOverlayOpacity: 1'
@@ -251,8 +251,7 @@ MonoBehaviour:
     - line: '|   tvOSBundleVersion: 1.0'
     - line: '|   bundleVersion: 0.1.2.12'
     - line: '|   preloadedAssets:'
-    - line: '|   - {fileID: -944628639613478452, guid: ebd30569d6031e7498c4e2afca7cdc3c,
-        type: 3}'
+    - line: '|   - {fileID: -944628639613478452, guid: ebd30569d6031e7498c4e2afca7cdc3c, type: 3}'
     - line: '|   metroInputSource: 0'
     - line: '|   wsaTransparentSwapchain: 0'
     - line: '|   xboxOneDisableKinectGpuReservation: 0'
@@ -393,8 +392,7 @@ MonoBehaviour:
     - line: '|   m_AndroidBanners:'
     - line: '|   - width: 320'
     - line: '|     height: 180'
-    - line: '|     banner: {fileID: 2800000, guid: e80f176c313b2564594b8d75a7f0638a,
-        type: 3}'
+    - line: '|     banner: {fileID: 2800000, guid: e80f176c313b2564594b8d75a7f0638a, type: 3}'
     - line: '|   androidGamepadSupportLevel: 0'
     - line: '|   AndroidMinifyRelease: 0'
     - line: '|   AndroidMinifyDebug: 0'
@@ -1013,10 +1011,8 @@ MonoBehaviour:
     - line: '|   metroLastRequiredScene: 0'
     - line: '|   metroDefaultTileSize: 1'
     - line: '|   metroTileForegroundText: 2'
-    - line: '|   metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628,
-        a: 0}'
-    - line: '|   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902,
-        b: 0.21568628, a: 1}'
+    - line: '|   metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}'
+    - line: '|   metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}'
     - line: '|   metroSplashScreenUseBackgroundColor: 0'
     - line: '|   syncCapabilities: 0'
     - line: '|   platformCapabilities: {}'

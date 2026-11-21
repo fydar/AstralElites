@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6dda05fc616b534e891d416220f7ebb, type: 3}
   m_Name: Highscore
   m_EditorClassIdentifier: 
-  currentValue: 2270
+  currentValue: 5780
   PlayerPrefsKey: Highscore
