@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithReport
@@ -52,12 +53,38 @@ public class BuildStripper : IPostprocessBuildWithReport, IPreprocessBuildWithRe
                     return;
                 }
                 postProcessingData.textures.blueNoise16LTex = Array.Empty<Texture2D>();
+#if !UNITY_6000_6_OR_NEWER
                 postProcessingData.textures.filmGrainTex = Array.Empty<Texture2D>();
+#endif
                 postProcessingData.textures.smaaSearchTex = null;
                 postProcessingData.textures.smaaAreaTex = null;
 
                 EditorUtility.SetDirty(postProcessingData);
             }
+        }
+
+        Type filmGrainResourcesType = null;
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            filmGrainResourcesType = assembly.GetType("UnityEngine.Rendering.Universal.UniversalRenderPipelineFilmGrainResources");
+            if (filmGrainResourcesType != null)
+            {
+                break;
+            }
+        }
+        if (filmGrainResourcesType != null)
+        {
+            var texturesField = filmGrainResourcesType.GetField("m_Textures", BindingFlags.NonPublic | BindingFlags.Instance);
+            foreach (var instance in Resources.FindObjectsOfTypeAll(filmGrainResourcesType))
+            {
+                texturesField?.SetValue(instance, Array.Empty<Texture2D>());
+                EditorUtility.SetDirty(instance);
+                Debug.Log($"[BuildStripper] Stripped film grain textures from {instance.name}");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[BuildStripper] UniversalRenderPipelineFilmGrainResources type not found");
         }
 
         // foreach (string textureGuid in AssetDatabase.FindAssets("t:Texture"))
